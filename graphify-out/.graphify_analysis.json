@@ -1,0 +1,462 @@
+{
+  "communities": {
+    "0": [
+      "activity_screen_dart",
+      "auth_auth_service_dart",
+      "c_dev_proyecto_app_lib_home_activity_screen_dart_activityitem",
+      "c_dev_proyecto_app_lib_home_activity_screen_dart_activityscreenstate",
+      "c_dev_proyecto_app_lib_home_activity_screen_dart_emptystate",
+      "c_dev_proyecto_app_lib_home_groups_screen_dart_center",
+      "c_dev_proyecto_app_lib_home_groups_screen_dart_checkboxlisttile",
+      "c_dev_proyecto_app_lib_home_groups_screen_dart_friendcheckboxtile",
+      "c_dev_proyecto_app_lib_home_groups_screen_dart_groupsscreenstate",
+      "c_dev_proyecto_app_lib_home_groups_screen_dart_pendinginvitationslist",
+      "c_dev_proyecto_app_lib_home_home_screen_dart_alertdialog",
+      "c_dev_proyecto_app_lib_home_home_screen_dart_balancesummary",
+      "c_dev_proyecto_app_lib_home_home_screen_dart_buildactioncard",
+      "c_dev_proyecto_app_lib_home_home_screen_dart_card",
+      "c_dev_proyecto_app_lib_home_home_screen_dart_column",
+      "c_dev_proyecto_app_lib_home_home_screen_dart_homescreenstate",
+      "c_dev_proyecto_app_lib_home_home_screen_dart_iconbutton",
+      "c_dev_proyecto_app_lib_home_home_screen_dart_initstate",
+      "c_dev_proyecto_app_lib_home_home_screen_dart_listtile",
+      "c_dev_proyecto_app_lib_home_home_screen_dart_shownotificationsdialog",
+      "c_dev_proyecto_app_lib_home_home_screen_dart_sizedbox",
+      "c_dev_proyecto_app_lib_home_home_screen_dart_statefulbuilder",
+      "c_dev_proyecto_app_lib_home_main_navigation_dart_buildnavitem",
+      "c_dev_proyecto_app_lib_home_main_navigation_dart_gesturedetector",
+      "c_dev_proyecto_app_lib_home_main_navigation_dart_mainnavigationstate",
+      "c_dev_proyecto_app_lib_home_profile_screen_dart_buildprofilelisttile",
+      "c_dev_proyecto_app_lib_home_profile_screen_dart_profilescreenstate",
+      "c_dev_proyecto_app_lib_main_dart_build",
+      "c_dev_proyecto_app_lib_theme_app_theme_dart_apptheme",
+      "c_dev_proyecto_app_lib_theme_app_theme_dart_themedata",
+      "dart_convert",
+      "dart_io",
+      "home_groups_screen_dart",
+      "home_home_screen_dart",
+      "home_profile_screen_dart",
+      "lib_home_main_navigation_dart",
+      "lib_theme_app_theme_dart",
+      "lib_widgets_google_sign_in_button_dart",
+      "package_flutter_material_dart",
+      "package_image_picker_image_picker_dart",
+      "package_proyecto_app_home_home_screen_dart",
+      "package_proyecto_app_models_friend_request_dart",
+      "package_proyecto_app_models_group_dart",
+      "package_proyecto_app_models_group_invitation_dart",
+      "package_proyecto_app_services_firestore_service_dart"
+    ],
+    "1": [
+      "c_dev_proyecto_app_lib_home_group_detail_screen_dart_align",
+      "c_dev_proyecto_app_lib_home_group_detail_screen_dart_balancecard",
+      "c_dev_proyecto_app_lib_home_group_detail_screen_dart_customscrollview",
+      "c_dev_proyecto_app_lib_home_group_detail_screen_dart_duration",
+      "c_dev_proyecto_app_lib_home_group_detail_screen_dart_getmembername",
+      "c_dev_proyecto_app_lib_home_group_detail_screen_dart_groupdetailscreenstate",
+      "c_dev_proyecto_app_lib_home_group_detail_screen_dart_inputchip",
+      "c_dev_proyecto_app_lib_home_group_detail_screen_dart_pendingjoinrequestslist",
+      "c_dev_proyecto_app_lib_home_group_detail_screen_dart_popupmenuitem",
+      "c_dev_proyecto_app_lib_home_group_detail_screen_dart_settlement",
+      "c_dev_proyecto_app_lib_home_group_detail_screen_dart_showdialog",
+      "c_dev_proyecto_app_lib_home_group_detail_screen_dart_showexpensecommentssheet",
+      "c_dev_proyecto_app_lib_home_group_detail_screen_dart_showmanagememberssheet",
+      "c_dev_proyecto_app_lib_home_group_detail_screen_dart_showmemberprofile",
+      "c_dev_proyecto_app_lib_home_group_detail_screen_dart_showmodalbottomsheet",
+      "c_dev_proyecto_app_lib_home_group_detail_screen_dart_size",
+      "c_dev_proyecto_app_lib_home_group_detail_screen_dart_textspan",
+      "c_dev_proyecto_app_lib_home_payments_screen_dart_buildhistorytab",
+      "c_dev_proyecto_app_lib_home_payments_screen_dart_buildrequeststab",
+      "c_dev_proyecto_app_lib_home_payments_screen_dart_categoryicon",
+      "c_dev_proyecto_app_lib_home_payments_screen_dart_container",
+      "c_dev_proyecto_app_lib_home_payments_screen_dart_errorstate",
+      "c_dev_proyecto_app_lib_home_payments_screen_dart_groupedpayment",
+      "c_dev_proyecto_app_lib_home_payments_screen_dart_loadallrequests",
+      "c_dev_proyecto_app_lib_home_payments_screen_dart_loadpayments",
+      "c_dev_proyecto_app_lib_home_payments_screen_dart_mapentry",
+      "c_dev_proyecto_app_lib_home_payments_screen_dart_methodchip",
+      "c_dev_proyecto_app_lib_home_payments_screen_dart_paymentsscreenstate",
+      "c_dev_proyecto_app_lib_home_payments_screen_dart_popscope",
+      "c_dev_proyecto_app_lib_home_payments_screen_dart_refreshdata",
+      "c_dev_proyecto_app_lib_home_payments_screen_dart_requestcard",
+      "c_dev_proyecto_app_lib_home_payments_screen_dart_showreceiptdialog",
+      "c_dev_proyecto_app_lib_home_payments_screen_dart_spacer",
+      "c_dev_proyecto_app_lib_home_payments_screen_dart_statusbadge",
+      "home_group_detail_screen_dart",
+      "package_flutter_services_dart",
+      "package_share_plus_share_plus_dart",
+      "payments_screen_dart"
+    ],
+    "2": [
+      "c_dev_proyecto_app_lib_firebase_options_dart_defaultfirebaseoptions",
+      "c_dev_proyecto_app_lib_firebase_options_dart_unsupportederror",
+      "c_dev_proyecto_app_lib_home_friends_screen_dart_text",
+      "c_dev_proyecto_app_lib_home_home_screen_dart_padding",
+      "c_dev_proyecto_app_lib_home_settings_screen_dart_divider",
+      "c_dev_proyecto_app_lib_home_settings_screen_dart_privacyitem",
+      "c_dev_proyecto_app_lib_home_settings_screen_dart_sectionlabel",
+      "c_dev_proyecto_app_lib_home_settings_screen_dart_settingsscreenstate",
+      "c_dev_proyecto_app_lib_home_settings_screen_dart_showlanguagedialog",
+      "c_dev_proyecto_app_lib_home_settings_screen_dart_showpersonalinfodialog",
+      "c_dev_proyecto_app_lib_home_settings_screen_dart_showprivacydialog",
+      "c_dev_proyecto_app_lib_home_settings_screen_dart_showthemedialog",
+      "c_dev_proyecto_app_lib_main_dart_mainnavigation",
+      "c_dev_proyecto_app_lib_main_dart_materialapp",
+      "c_dev_proyecto_app_lib_main_dart_myapp",
+      "lib_firebase_options_dart",
+      "linux_runner_main_cc",
+      "main_dart",
+      "package_firebase_core_firebase_core_dart",
+      "package_flutter_foundation_dart",
+      "package_flutter_test_flutter_test_dart",
+      "package_proyecto_app_auth_login_screen_dart",
+      "package_proyecto_app_firebase_options_dart",
+      "package_proyecto_app_home_main_navigation_dart",
+      "package_proyecto_app_main_dart",
+      "package_proyecto_app_theme_app_theme_dart",
+      "package_shared_preferences_shared_preferences_dart",
+      "runner_main_main",
+      "settings_screen_dart",
+      "test_widget_test_dart"
+    ],
+    "3": [
+      "analysis_options_yaml",
+      "cloud_firestore",
+      "diseos_html",
+      "firebase_auth",
+      "firebase_core",
+      "flutter_generated_plugin_registrant_fl_register_plugins",
+      "flutter_generatedpluginregistrant_registergeneratedplugins",
+      "flutter_launcher_icons",
+      "flutter_lints",
+      "flutter_native_splash",
+      "google_sign_in",
+      "ios_runner_generatedpluginregistrant_h",
+      "linux_runner_my_application_h",
+      "macos_runner_mainflutterwindow_swift",
+      "nswindow",
+      "plugins_generatedpluginregistrant_generatedpluginregistrant_registerwith",
+      "pubspec_yaml",
+      "runner_generatedpluginregistrant_generatedpluginregistrant_registerwithregistry",
+      "runner_mainflutterwindow_mainflutterwindow_awakefromnib",
+      "runner_my_application_first_frame_cb",
+      "runner_my_application_my_application_activate",
+      "runner_my_application_my_application_class_init",
+      "runner_my_application_my_application_dispose",
+      "runner_my_application_my_application_init",
+      "runner_my_application_my_application_local_command_line",
+      "runner_my_application_my_application_shutdown",
+      "runner_my_application_my_application_startup",
+      "smartbudget_brand"
+    ],
+    "4": [
+      "c_dev_proyecto_app_lib_auth_auth_service_dart_exception",
+      "c_dev_proyecto_app_lib_models_comment_dart_comment",
+      "c_dev_proyecto_app_lib_models_expense_dart_expense",
+      "c_dev_proyecto_app_lib_models_expense_dart_parsedatetime",
+      "c_dev_proyecto_app_lib_models_expense_dart_parsedouble",
+      "c_dev_proyecto_app_lib_models_group_dart_buildinvitecode",
+      "c_dev_proyecto_app_lib_models_group_dart_groupmodel",
+      "c_dev_proyecto_app_lib_models_group_invitation_dart_groupinvitation",
+      "c_dev_proyecto_app_lib_services_firestore_service_dart_createexpense",
+      "c_dev_proyecto_app_lib_services_firestore_service_dart_createnotification",
+      "c_dev_proyecto_app_lib_services_firestore_service_dart_emitcombined",
+      "c_dev_proyecto_app_lib_services_firestore_service_dart_sendgroupinvitation",
+      "c_dev_proyecto_app_lib_services_firestore_service_dart_sendjoinrequest",
+      "dart_async",
+      "lib_models_comment_dart",
+      "lib_models_expense_dart",
+      "lib_models_friend_request_dart",
+      "lib_models_group_dart",
+      "lib_models_payment_request_dart",
+      "lib_services_firestore_service_dart",
+      "models_expense_dart",
+      "models_friend_request_dart",
+      "models_group_dart",
+      "models_group_invitation_dart",
+      "models_payment_request_dart",
+      "package_cloud_firestore_cloud_firestore_dart",
+      "services_firestore_service_dart"
+    ],
+    "5": [
+      "auth_service_dart",
+      "c_dev_proyecto_app_lib_auth_auth_service_dart_authservice",
+      "c_dev_proyecto_app_lib_auth_login_screen_dart_login",
+      "c_dev_proyecto_app_lib_auth_login_screen_dart_loginwithgoogle",
+      "c_dev_proyecto_app_lib_auth_register_screen_dart_register",
+      "c_dev_proyecto_app_lib_auth_register_screen_dart_registerwithgoogle",
+      "c_dev_proyecto_app_lib_home_friends_screen_dart_draggablescrollablesheet",
+      "c_dev_proyecto_app_lib_home_friends_screen_dart_friendprofiledata",
+      "c_dev_proyecto_app_lib_home_friends_screen_dart_friendprofilesheet",
+      "c_dev_proyecto_app_lib_home_friends_screen_dart_friendsscreenstate",
+      "c_dev_proyecto_app_lib_home_friends_screen_dart_friendtile",
+      "c_dev_proyecto_app_lib_home_friends_screen_dart_linearprogressindicator",
+      "c_dev_proyecto_app_lib_home_friends_screen_dart_listview",
+      "c_dev_proyecto_app_lib_home_friends_screen_dart_pendingrequesttile",
+      "c_dev_proyecto_app_lib_home_friends_screen_dart_row",
+      "c_dev_proyecto_app_lib_home_friends_screen_dart_showfriendprofile",
+      "c_dev_proyecto_app_lib_home_friends_screen_dart_tab",
+      "c_dev_proyecto_app_lib_home_home_screen_dart_dispose",
+      "c_dev_proyecto_app_lib_home_home_screen_dart_snackbar",
+      "c_dev_proyecto_app_lib_main_dart_scaffold",
+      "home_friends_screen_dart",
+      "lib_auth_login_screen_dart",
+      "package_firebase_auth_firebase_auth_dart",
+      "package_google_sign_in_google_sign_in_dart",
+      "package_proyecto_app_widgets_google_sign_in_button_dart",
+      "register_screen_dart"
+    ],
+    "6": [
+      "flutter_generated_plugin_registrant_registerplugins",
+      "runner_win32_window_create",
+      "runner_win32_window_destroy",
+      "runner_win32_window_enablefulldpisupportifavailable",
+      "runner_win32_window_getclientarea",
+      "runner_win32_window_gethandle",
+      "runner_win32_window_getthisfromhandle",
+      "runner_win32_window_getwindowclass",
+      "runner_win32_window_messagehandler",
+      "runner_win32_window_oncreate",
+      "runner_win32_window_scale",
+      "runner_win32_window_setchildcontent",
+      "runner_win32_window_setquitonclose",
+      "runner_win32_window_show",
+      "runner_win32_window_unregisterwindowclass",
+      "runner_win32_window_updatetheme",
+      "runner_win32_window_windowclassregistrar",
+      "runner_win32_window_wndproc",
+      "windows_runner_flutter_window_cpp",
+      "windows_runner_flutter_window_h",
+      "windows_runner_win32_window_cpp",
+      "windows_runner_win32_window_h"
+    ],
+    "7": [
+      "flutterappdelegate",
+      "flutterimplicitenginedelegate",
+      "ios_runner_appdelegate_swift",
+      "runner_appdelegate_appdelegate_application",
+      "runner_appdelegate_appdelegate_applicationshouldterminateafterlastwindowclosed",
+      "runner_appdelegate_appdelegate_applicationsupportssecurerestorablestate",
+      "runner_appdelegate_appdelegate_didinitializeimplicitflutterengine"
+    ],
+    "8": [
+      "agents_graph_report",
+      "agents_graphify",
+      "agents_graphify_explain",
+      "agents_graphify_query",
+      "agents_graphify_update",
+      "agents_skill_tool",
+      "agents_wiki_index"
+    ],
+    "9": [
+      "runner_main_wwinmain",
+      "runner_utils_createandattachconsole",
+      "runner_utils_getcommandlinearguments",
+      "runner_utils_utf8fromutf16",
+      "windows_runner_main_cpp",
+      "windows_runner_utils_cpp"
+    ],
+    "10": [
+      "ephemeral_flutter_lldb_helper_handle_new_rx_page",
+      "ephemeral_flutter_lldb_helper_lldb_init_module",
+      "ephemeral_flutter_lldb_helper_rationale_8",
+      "ios_flutter_ephemeral_flutter_lldb_helper_py"
+    ],
+    "11": [
+      "ios_runnertests_runnertests_swift",
+      "runnertests_runnertests_runnertests",
+      "runnertests_runnertests_runnertests_testexample",
+      "xctestcase"
+    ],
+    "12": [
+      "flutterscenedelegate",
+      "ios_runner_scenedelegate_swift",
+      "runner_scenedelegate_scenedelegate"
+    ],
+    "13": [
+      "ic_launcher_hdpi",
+      "ios_appicon_1024"
+    ],
+    "14": [
+      "android_build_gradle_kts"
+    ],
+    "15": [
+      "android_settings_gradle_kts"
+    ],
+    "16": [
+      "proyecto_app_mainactivity_mainactivity"
+    ],
+    "17": [
+      "ios_runner_runner_bridging_header_h"
+    ],
+    "18": [
+      "windows_runner_resource_h"
+    ],
+    "19": [
+      "windows_runner_utils_h"
+    ],
+    "20": [
+      "devtools_options_yaml"
+    ],
+    "21": [
+      "readme_md"
+    ],
+    "22": [
+      "splash_png"
+    ],
+    "23": [
+      "android12splash_png"
+    ],
+    "24": [
+      "launcher_icon_hdpi"
+    ],
+    "25": [
+      "google_logo_png"
+    ],
+    "26": [
+      "logo_debug_png"
+    ]
+  },
+  "cohesion": {
+    "0": 0.07,
+    "1": 0.06,
+    "2": 0.07,
+    "3": 0.08,
+    "4": 0.11,
+    "5": 0.1,
+    "6": 0.17,
+    "7": 0.29,
+    "8": 0.29,
+    "9": 0.47,
+    "10": 0.5,
+    "11": 0.5,
+    "12": 0.67,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0,
+    "26": 1.0
+  },
+  "gods": [
+    {
+      "id": "payments_screen_dart",
+      "label": "payments_screen.dart",
+      "degree": 37
+    },
+    {
+      "id": "services_firestore_service_dart",
+      "label": "../services/firestore_service.dart",
+      "degree": 22
+    },
+    {
+      "id": "settings_screen_dart",
+      "label": "settings_screen.dart",
+      "degree": 21
+    },
+    {
+      "id": "main_dart",
+      "label": "../main.dart",
+      "degree": 17
+    },
+    {
+      "id": "package_flutter_material_dart",
+      "label": "package:flutter/material.dart",
+      "degree": 15
+    },
+    {
+      "id": "activity_screen_dart",
+      "label": "activity_screen.dart",
+      "degree": 15
+    },
+    {
+      "id": "c_dev_proyecto_app_lib_main_dart_build",
+      "label": "build",
+      "degree": 13
+    },
+    {
+      "id": "package_cloud_firestore_cloud_firestore_dart",
+      "label": "package:cloud_firestore/cloud_firestore.dart",
+      "degree": 13
+    },
+    {
+      "id": "package_firebase_auth_firebase_auth_dart",
+      "label": "package:firebase_auth/firebase_auth.dart",
+      "degree": 13
+    },
+    {
+      "id": "c_dev_proyecto_app_lib_main_dart_scaffold",
+      "label": "Scaffold",
+      "degree": 12
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Pubspec Manifest",
+      "target": "SmartBudget Brand",
+      "source_files": [
+        "pubspec.yaml",
+        "dise\u00f1os.html"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `SmartBudget Brand` unexpectedly reaches hub `Pubspec Manifest`"
+    },
+    {
+      "source": "../models/expense.dart",
+      "target": "_parseDouble",
+      "source_files": [
+        "lib/home/activity_screen.dart",
+        "models/expense.dart"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "defines",
+      "why": "connects across different repos/directories; peripheral node `_parseDouble` unexpectedly reaches hub `../models/expense.dart`"
+    },
+    {
+      "source": "../models/expense.dart",
+      "target": "_parseDateTime",
+      "source_files": [
+        "lib/home/activity_screen.dart",
+        "models/expense.dart"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "defines",
+      "why": "connects across different repos/directories; peripheral node `_parseDateTime` unexpectedly reaches hub `../models/expense.dart`"
+    },
+    {
+      "source": "../services/firestore_service.dart",
+      "target": "emitCombined",
+      "source_files": [
+        "lib/home/activity_screen.dart",
+        "services/firestore_service.dart"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "defines",
+      "why": "connects across different repos/directories; peripheral node `emitCombined` unexpectedly reaches hub `../services/firestore_service.dart`"
+    },
+    {
+      "source": "../services/firestore_service.dart",
+      "target": "sendGroupInvitation",
+      "source_files": [
+        "lib/home/activity_screen.dart",
+        "services/firestore_service.dart"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "defines",
+      "why": "connects across different repos/directories; peripheral node `sendGroupInvitation` unexpectedly reaches hub `../services/firestore_service.dart`"
+    }
+  ],
+  "tokens": {
+    "input": 540,
+    "output": 890
+  }
+}

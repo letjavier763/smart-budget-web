@@ -1,0 +1,4513 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "firebase_options.dart",
+      "file_type": "code",
+      "source_file": "firebase_options.dart",
+      "source_location": null,
+      "id": "firebase_options_dart",
+      "community": 4,
+      "norm_label": "firebase_options.dart"
+    },
+    {
+      "label": "DefaultFirebaseOptions",
+      "file_type": "code",
+      "source_file": "firebase_options.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_firebase_options_dart_defaultfirebaseoptions",
+      "community": 4,
+      "norm_label": "defaultfirebaseoptions"
+    },
+    {
+      "label": "UnsupportedError",
+      "file_type": "code",
+      "source_file": "firebase_options.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_firebase_options_dart_unsupportederror",
+      "community": 4,
+      "norm_label": "unsupportederror"
+    },
+    {
+      "label": "package:firebase_core/firebase_core.dart",
+      "file_type": "code",
+      "source_file": "firebase_options.dart",
+      "source_location": null,
+      "id": "package_firebase_core_firebase_core_dart",
+      "community": 4,
+      "norm_label": "package:firebase_core/firebase_core.dart"
+    },
+    {
+      "label": "package:flutter/foundation.dart",
+      "file_type": "code",
+      "source_file": "firebase_options.dart",
+      "source_location": null,
+      "id": "package_flutter_foundation_dart",
+      "community": 4,
+      "norm_label": "package:flutter/foundation.dart"
+    },
+    {
+      "label": "main.dart",
+      "file_type": "code",
+      "source_file": "main.dart",
+      "source_location": null,
+      "id": "main_dart",
+      "community": 4,
+      "norm_label": "main.dart"
+    },
+    {
+      "label": "MyApp",
+      "file_type": "code",
+      "source_file": "main.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_main_dart_myapp",
+      "community": 4,
+      "norm_label": "myapp"
+    },
+    {
+      "label": "main",
+      "file_type": "code",
+      "source_file": "main.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_main_dart_main",
+      "community": 4,
+      "norm_label": "main"
+    },
+    {
+      "label": "build",
+      "file_type": "code",
+      "source_file": "main.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_main_dart_build",
+      "community": 0,
+      "norm_label": "build"
+    },
+    {
+      "label": "MaterialApp",
+      "file_type": "code",
+      "source_file": "main.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_main_dart_materialapp",
+      "community": 4,
+      "norm_label": "materialapp"
+    },
+    {
+      "label": "Scaffold",
+      "file_type": "code",
+      "source_file": "main.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_main_dart_scaffold",
+      "community": 5,
+      "norm_label": "scaffold"
+    },
+    {
+      "label": "MainNavigation",
+      "file_type": "code",
+      "source_file": "main.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_main_dart_mainnavigation",
+      "community": 4,
+      "norm_label": "mainnavigation"
+    },
+    {
+      "label": "package:cloud_firestore/cloud_firestore.dart",
+      "file_type": "code",
+      "source_file": "main.dart",
+      "source_location": null,
+      "id": "package_cloud_firestore_cloud_firestore_dart",
+      "community": 1,
+      "norm_label": "package:cloud_firestore/cloud_firestore.dart"
+    },
+    {
+      "label": "package:firebase_auth/firebase_auth.dart",
+      "file_type": "code",
+      "source_file": "main.dart",
+      "source_location": null,
+      "id": "package_firebase_auth_firebase_auth_dart",
+      "community": 5,
+      "norm_label": "package:firebase_auth/firebase_auth.dart"
+    },
+    {
+      "label": "package:flutter/material.dart",
+      "file_type": "code",
+      "source_file": "main.dart",
+      "source_location": null,
+      "id": "package_flutter_material_dart",
+      "community": 0,
+      "norm_label": "package:flutter/material.dart"
+    },
+    {
+      "label": "package:proyecto_app/auth/login_screen.dart",
+      "file_type": "code",
+      "source_file": "main.dart",
+      "source_location": null,
+      "id": "package_proyecto_app_auth_login_screen_dart",
+      "community": 4,
+      "norm_label": "package:proyecto_app/auth/login_screen.dart"
+    },
+    {
+      "label": "package:proyecto_app/firebase_options.dart",
+      "file_type": "code",
+      "source_file": "main.dart",
+      "source_location": null,
+      "id": "package_proyecto_app_firebase_options_dart",
+      "community": 4,
+      "norm_label": "package:proyecto_app/firebase_options.dart"
+    },
+    {
+      "label": "package:proyecto_app/home/main_navigation.dart",
+      "file_type": "code",
+      "source_file": "main.dart",
+      "source_location": null,
+      "id": "package_proyecto_app_home_main_navigation_dart",
+      "community": 4,
+      "norm_label": "package:proyecto_app/home/main_navigation.dart"
+    },
+    {
+      "label": "package:proyecto_app/theme/app_theme.dart",
+      "file_type": "code",
+      "source_file": "main.dart",
+      "source_location": null,
+      "id": "package_proyecto_app_theme_app_theme_dart",
+      "community": 4,
+      "norm_label": "package:proyecto_app/theme/app_theme.dart"
+    },
+    {
+      "label": "package:shared_preferences/shared_preferences.dart",
+      "file_type": "code",
+      "source_file": "main.dart",
+      "source_location": null,
+      "id": "package_shared_preferences_shared_preferences_dart",
+      "community": 4,
+      "norm_label": "package:shared_preferences/shared_preferences.dart"
+    },
+    {
+      "label": "AuthService",
+      "file_type": "code",
+      "source_file": "auth/auth_service.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_auth_auth_service_dart_authservice",
+      "community": 5,
+      "norm_label": "authservice"
+    },
+    {
+      "label": "Exception",
+      "file_type": "code",
+      "source_file": "auth/auth_service.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_auth_auth_service_dart_exception",
+      "community": 5,
+      "norm_label": "exception"
+    },
+    {
+      "label": "package:google_sign_in/google_sign_in.dart",
+      "file_type": "code",
+      "source_file": "auth/auth_service.dart",
+      "source_location": null,
+      "id": "package_google_sign_in_google_sign_in_dart",
+      "community": 5,
+      "norm_label": "package:google_sign_in/google_sign_in.dart"
+    },
+    {
+      "label": "login_screen.dart",
+      "file_type": "code",
+      "source_file": "auth/login_screen.dart",
+      "source_location": null,
+      "id": "auth_login_screen_dart",
+      "community": 5,
+      "norm_label": "login_screen.dart"
+    },
+    {
+      "label": "login",
+      "file_type": "code",
+      "source_file": "auth/login_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_auth_login_screen_dart_login",
+      "community": 5,
+      "norm_label": "login"
+    },
+    {
+      "label": "loginWithGoogle",
+      "file_type": "code",
+      "source_file": "auth/login_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_auth_login_screen_dart_loginwithgoogle",
+      "community": 5,
+      "norm_label": "loginwithgoogle"
+    },
+    {
+      "label": "package:proyecto_app/widgets/google_sign_in_button.dart",
+      "file_type": "code",
+      "source_file": "auth/login_screen.dart",
+      "source_location": null,
+      "id": "package_proyecto_app_widgets_google_sign_in_button_dart",
+      "community": 5,
+      "norm_label": "package:proyecto_app/widgets/google_sign_in_button.dart"
+    },
+    {
+      "label": "auth_service.dart",
+      "file_type": "code",
+      "source_file": "auth/login_screen.dart",
+      "source_location": null,
+      "id": "auth_service_dart",
+      "community": 5,
+      "norm_label": "auth_service.dart"
+    },
+    {
+      "label": "register_screen.dart",
+      "file_type": "code",
+      "source_file": "auth/login_screen.dart",
+      "source_location": null,
+      "id": "register_screen_dart",
+      "community": 5,
+      "norm_label": "register_screen.dart"
+    },
+    {
+      "label": "register",
+      "file_type": "code",
+      "source_file": "auth/register_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_auth_register_screen_dart_register",
+      "community": 5,
+      "norm_label": "register"
+    },
+    {
+      "label": "registerWithGoogle",
+      "file_type": "code",
+      "source_file": "auth/register_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_auth_register_screen_dart_registerwithgoogle",
+      "community": 5,
+      "norm_label": "registerwithgoogle"
+    },
+    {
+      "label": "_ActivityItem",
+      "file_type": "code",
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_activity_screen_dart_activityitem",
+      "community": 0,
+      "norm_label": "_activityitem"
+    },
+    {
+      "label": "_ActivityScreenState",
+      "file_type": "code",
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_activity_screen_dart_activityscreenstate",
+      "community": 0,
+      "norm_label": "_activityscreenstate"
+    },
+    {
+      "label": "_emptyState",
+      "file_type": "code",
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_activity_screen_dart_emptystate",
+      "community": 0,
+      "norm_label": "_emptystate"
+    },
+    {
+      "label": "../models/expense.dart",
+      "file_type": "code",
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "id": "models_expense_dart",
+      "community": 1,
+      "norm_label": "../models/expense.dart"
+    },
+    {
+      "label": "../models/group.dart",
+      "file_type": "code",
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "id": "models_group_dart",
+      "community": 1,
+      "norm_label": "../models/group.dart"
+    },
+    {
+      "label": "../services/firestore_service.dart",
+      "file_type": "code",
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "id": "services_firestore_service_dart",
+      "community": 1,
+      "norm_label": "../services/firestore_service.dart"
+    },
+    {
+      "label": "friends_screen.dart",
+      "file_type": "code",
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "id": "home_friends_screen_dart",
+      "community": 6,
+      "norm_label": "friends_screen.dart"
+    },
+    {
+      "label": "_FriendsScreenState",
+      "file_type": "code",
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_friends_screen_dart_friendsscreenstate",
+      "community": 6,
+      "norm_label": "_friendsscreenstate"
+    },
+    {
+      "label": "_FriendTile",
+      "file_type": "code",
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_friends_screen_dart_friendtile",
+      "community": 6,
+      "norm_label": "_friendtile"
+    },
+    {
+      "label": "_PendingRequestTile",
+      "file_type": "code",
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_friends_screen_dart_pendingrequesttile",
+      "community": 6,
+      "norm_label": "_pendingrequesttile"
+    },
+    {
+      "label": "_FriendProfileSheet",
+      "file_type": "code",
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_friends_screen_dart_friendprofilesheet",
+      "community": 6,
+      "norm_label": "_friendprofilesheet"
+    },
+    {
+      "label": "_FriendProfileData",
+      "file_type": "code",
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_friends_screen_dart_friendprofiledata",
+      "community": 6,
+      "norm_label": "_friendprofiledata"
+    },
+    {
+      "label": "LinearProgressIndicator",
+      "file_type": "code",
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_friends_screen_dart_linearprogressindicator",
+      "community": 6,
+      "norm_label": "linearprogressindicator"
+    },
+    {
+      "label": "_showFriendProfile",
+      "file_type": "code",
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_friends_screen_dart_showfriendprofile",
+      "community": 6,
+      "norm_label": "_showfriendprofile"
+    },
+    {
+      "label": "DraggableScrollableSheet",
+      "file_type": "code",
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_friends_screen_dart_draggablescrollablesheet",
+      "community": 6,
+      "norm_label": "draggablescrollablesheet"
+    },
+    {
+      "label": "Tab",
+      "file_type": "code",
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_friends_screen_dart_tab",
+      "community": 6,
+      "norm_label": "tab"
+    },
+    {
+      "label": "Row",
+      "file_type": "code",
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_friends_screen_dart_row",
+      "community": 6,
+      "norm_label": "row"
+    },
+    {
+      "label": "Text",
+      "file_type": "code",
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_friends_screen_dart_text",
+      "community": 7,
+      "norm_label": "text"
+    },
+    {
+      "label": "ListView",
+      "file_type": "code",
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_friends_screen_dart_listview",
+      "community": 6,
+      "norm_label": "listview"
+    },
+    {
+      "label": "dart:convert",
+      "file_type": "code",
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "id": "dart_convert",
+      "community": 2,
+      "norm_label": "dart:convert"
+    },
+    {
+      "label": "../models/friend_request.dart",
+      "file_type": "code",
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "id": "models_friend_request_dart",
+      "community": 1,
+      "norm_label": "../models/friend_request.dart"
+    },
+    {
+      "label": "groups_screen.dart",
+      "file_type": "code",
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "id": "home_groups_screen_dart",
+      "community": 0,
+      "norm_label": "groups_screen.dart"
+    },
+    {
+      "label": "_GroupsScreenState",
+      "file_type": "code",
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_groups_screen_dart_groupsscreenstate",
+      "community": 0,
+      "norm_label": "_groupsscreenstate"
+    },
+    {
+      "label": "_FriendCheckboxTile",
+      "file_type": "code",
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_groups_screen_dart_friendcheckboxtile",
+      "community": 0,
+      "norm_label": "_friendcheckboxtile"
+    },
+    {
+      "label": "_PendingInvitationsList",
+      "file_type": "code",
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_groups_screen_dart_pendinginvitationslist",
+      "community": 0,
+      "norm_label": "_pendinginvitationslist"
+    },
+    {
+      "label": "Center",
+      "file_type": "code",
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_groups_screen_dart_center",
+      "community": 0,
+      "norm_label": "center"
+    },
+    {
+      "label": "CheckboxListTile",
+      "file_type": "code",
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_groups_screen_dart_checkboxlisttile",
+      "community": 0,
+      "norm_label": "checkboxlisttile"
+    },
+    {
+      "label": "package:proyecto_app/models/friend_request.dart",
+      "file_type": "code",
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "id": "package_proyecto_app_models_friend_request_dart",
+      "community": 0,
+      "norm_label": "package:proyecto_app/models/friend_request.dart"
+    },
+    {
+      "label": "package:proyecto_app/models/group.dart",
+      "file_type": "code",
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "id": "package_proyecto_app_models_group_dart",
+      "community": 0,
+      "norm_label": "package:proyecto_app/models/group.dart"
+    },
+    {
+      "label": "package:proyecto_app/models/group_invitation.dart",
+      "file_type": "code",
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "id": "package_proyecto_app_models_group_invitation_dart",
+      "community": 0,
+      "norm_label": "package:proyecto_app/models/group_invitation.dart"
+    },
+    {
+      "label": "package:proyecto_app/services/firestore_service.dart",
+      "file_type": "code",
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "id": "package_proyecto_app_services_firestore_service_dart",
+      "community": 0,
+      "norm_label": "package:proyecto_app/services/firestore_service.dart"
+    },
+    {
+      "label": "group_detail_screen.dart",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "home_group_detail_screen_dart",
+      "community": 3,
+      "norm_label": "group_detail_screen.dart"
+    },
+    {
+      "label": "Settlement",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_settlement",
+      "community": 3,
+      "norm_label": "settlement"
+    },
+    {
+      "label": "_GroupDetailScreenState",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_groupdetailscreenstate",
+      "community": 3,
+      "norm_label": "_groupdetailscreenstate"
+    },
+    {
+      "label": "_BalanceCard",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_balancecard",
+      "community": 3,
+      "norm_label": "_balancecard"
+    },
+    {
+      "label": "_PendingJoinRequestsList",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_pendingjoinrequestslist",
+      "community": 3,
+      "norm_label": "_pendingjoinrequestslist"
+    },
+    {
+      "label": "_getMemberName",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_getmembername",
+      "community": 3,
+      "norm_label": "_getmembername"
+    },
+    {
+      "label": "showDialog",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_showdialog",
+      "community": 3,
+      "norm_label": "showdialog"
+    },
+    {
+      "label": "Duration",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_duration",
+      "community": 3,
+      "norm_label": "duration"
+    },
+    {
+      "label": "showModalBottomSheet",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_showmodalbottomsheet",
+      "community": 3,
+      "norm_label": "showmodalbottomsheet"
+    },
+    {
+      "label": "_showMemberProfile",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_showmemberprofile",
+      "community": 3,
+      "norm_label": "_showmemberprofile"
+    },
+    {
+      "label": "_showExpenseCommentsSheet",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_showexpensecommentssheet",
+      "community": 3,
+      "norm_label": "_showexpensecommentssheet"
+    },
+    {
+      "label": "Align",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_align",
+      "community": 3,
+      "norm_label": "align"
+    },
+    {
+      "label": "TextSpan",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_textspan",
+      "community": 3,
+      "norm_label": "textspan"
+    },
+    {
+      "label": "_showManageMembersSheet",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_showmanagememberssheet",
+      "community": 3,
+      "norm_label": "_showmanagememberssheet"
+    },
+    {
+      "label": "InputChip",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_inputchip",
+      "community": 3,
+      "norm_label": "inputchip"
+    },
+    {
+      "label": "CustomScrollView",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_customscrollview",
+      "community": 3,
+      "norm_label": "customscrollview"
+    },
+    {
+      "label": "PopupMenuItem",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_popupmenuitem",
+      "community": 3,
+      "norm_label": "popupmenuitem"
+    },
+    {
+      "label": "Size",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_size",
+      "community": 3,
+      "norm_label": "size"
+    },
+    {
+      "label": "package:image_picker/image_picker.dart",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "package_image_picker_image_picker_dart",
+      "community": 2,
+      "norm_label": "package:image_picker/image_picker.dart"
+    },
+    {
+      "label": "package:flutter/services.dart",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "package_flutter_services_dart",
+      "community": 3,
+      "norm_label": "package:flutter/services.dart"
+    },
+    {
+      "label": "package:share_plus/share_plus.dart",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "package_share_plus_share_plus_dart",
+      "community": 3,
+      "norm_label": "package:share_plus/share_plus.dart"
+    },
+    {
+      "label": "../models/group_invitation.dart",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "models_group_invitation_dart",
+      "community": 1,
+      "norm_label": "../models/group_invitation.dart"
+    },
+    {
+      "label": "../models/payment_request.dart",
+      "file_type": "code",
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "id": "models_payment_request_dart",
+      "community": 1,
+      "norm_label": "../models/payment_request.dart"
+    },
+    {
+      "label": "home_screen.dart",
+      "file_type": "code",
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "id": "home_home_screen_dart",
+      "community": 8,
+      "norm_label": "home_screen.dart"
+    },
+    {
+      "label": "_BalanceSummary",
+      "file_type": "code",
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_home_screen_dart_balancesummary",
+      "community": 8,
+      "norm_label": "_balancesummary"
+    },
+    {
+      "label": "_HomeScreenState",
+      "file_type": "code",
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_home_screen_dart_homescreenstate",
+      "community": 8,
+      "norm_label": "_homescreenstate"
+    },
+    {
+      "label": "initState",
+      "file_type": "code",
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_home_screen_dart_initstate",
+      "community": 0,
+      "norm_label": "initstate"
+    },
+    {
+      "label": "dispose",
+      "file_type": "code",
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_home_screen_dart_dispose",
+      "community": 5,
+      "norm_label": "dispose"
+    },
+    {
+      "label": "SnackBar",
+      "file_type": "code",
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_home_screen_dart_snackbar",
+      "community": 5,
+      "norm_label": "snackbar"
+    },
+    {
+      "label": "StatefulBuilder",
+      "file_type": "code",
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_home_screen_dart_statefulbuilder",
+      "community": 8,
+      "norm_label": "statefulbuilder"
+    },
+    {
+      "label": "AlertDialog",
+      "file_type": "code",
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_home_screen_dart_alertdialog",
+      "community": 8,
+      "norm_label": "alertdialog"
+    },
+    {
+      "label": "SizedBox",
+      "file_type": "code",
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_home_screen_dart_sizedbox",
+      "community": 0,
+      "norm_label": "sizedbox"
+    },
+    {
+      "label": "_showNotificationsDialog",
+      "file_type": "code",
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_home_screen_dart_shownotificationsdialog",
+      "community": 8,
+      "norm_label": "_shownotificationsdialog"
+    },
+    {
+      "label": "Padding",
+      "file_type": "code",
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_home_screen_dart_padding",
+      "community": 7,
+      "norm_label": "padding"
+    },
+    {
+      "label": "Column",
+      "file_type": "code",
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_home_screen_dart_column",
+      "community": 0,
+      "norm_label": "column"
+    },
+    {
+      "label": "ListTile",
+      "file_type": "code",
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_home_screen_dart_listtile",
+      "community": 8,
+      "norm_label": "listtile"
+    },
+    {
+      "label": "IconButton",
+      "file_type": "code",
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_home_screen_dart_iconbutton",
+      "community": 8,
+      "norm_label": "iconbutton"
+    },
+    {
+      "label": "Card",
+      "file_type": "code",
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_home_screen_dart_card",
+      "community": 2,
+      "norm_label": "card"
+    },
+    {
+      "label": "_buildActionCard",
+      "file_type": "code",
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_home_screen_dart_buildactioncard",
+      "community": 8,
+      "norm_label": "_buildactioncard"
+    },
+    {
+      "label": "payments_screen.dart",
+      "file_type": "code",
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "id": "payments_screen_dart",
+      "community": 2,
+      "norm_label": "payments_screen.dart"
+    },
+    {
+      "label": "main_navigation.dart",
+      "file_type": "code",
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "id": "home_main_navigation_dart",
+      "community": 0,
+      "norm_label": "main_navigation.dart"
+    },
+    {
+      "label": "_MainNavigationState",
+      "file_type": "code",
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_main_navigation_dart_mainnavigationstate",
+      "community": 0,
+      "norm_label": "_mainnavigationstate"
+    },
+    {
+      "label": "_buildNavItem",
+      "file_type": "code",
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_main_navigation_dart_buildnavitem",
+      "community": 0,
+      "norm_label": "_buildnavitem"
+    },
+    {
+      "label": "GestureDetector",
+      "file_type": "code",
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_main_navigation_dart_gesturedetector",
+      "community": 0,
+      "norm_label": "gesturedetector"
+    },
+    {
+      "label": "package:proyecto_app/home/home_screen.dart",
+      "file_type": "code",
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "id": "package_proyecto_app_home_home_screen_dart",
+      "community": 0,
+      "norm_label": "package:proyecto_app/home/home_screen.dart"
+    },
+    {
+      "label": "_GroupedPayment",
+      "file_type": "code",
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_payments_screen_dart_groupedpayment",
+      "community": 2,
+      "norm_label": "_groupedpayment"
+    },
+    {
+      "label": "_PaymentsScreenState",
+      "file_type": "code",
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_payments_screen_dart_paymentsscreenstate",
+      "community": 2,
+      "norm_label": "_paymentsscreenstate"
+    },
+    {
+      "label": "_loadPayments",
+      "file_type": "code",
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_payments_screen_dart_loadpayments",
+      "community": 2,
+      "norm_label": "_loadpayments"
+    },
+    {
+      "label": "_loadAllRequests",
+      "file_type": "code",
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_payments_screen_dart_loadallrequests",
+      "community": 2,
+      "norm_label": "_loadallrequests"
+    },
+    {
+      "label": "_refreshData",
+      "file_type": "code",
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_payments_screen_dart_refreshdata",
+      "community": 2,
+      "norm_label": "_refreshdata"
+    },
+    {
+      "label": "_showReceiptDialog",
+      "file_type": "code",
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_payments_screen_dart_showreceiptdialog",
+      "community": 2,
+      "norm_label": "_showreceiptdialog"
+    },
+    {
+      "label": "_buildHistoryTab",
+      "file_type": "code",
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_payments_screen_dart_buildhistorytab",
+      "community": 2,
+      "norm_label": "_buildhistorytab"
+    },
+    {
+      "label": "_errorState",
+      "file_type": "code",
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_payments_screen_dart_errorstate",
+      "community": 2,
+      "norm_label": "_errorstate"
+    },
+    {
+      "label": "_buildRequestsTab",
+      "file_type": "code",
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_payments_screen_dart_buildrequeststab",
+      "community": 2,
+      "norm_label": "_buildrequeststab"
+    },
+    {
+      "label": "_requestCard",
+      "file_type": "code",
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_payments_screen_dart_requestcard",
+      "community": 2,
+      "norm_label": "_requestcard"
+    },
+    {
+      "label": "Spacer",
+      "file_type": "code",
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_payments_screen_dart_spacer",
+      "community": 2,
+      "norm_label": "spacer"
+    },
+    {
+      "label": "PopScope",
+      "file_type": "code",
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_payments_screen_dart_popscope",
+      "community": 2,
+      "norm_label": "popscope"
+    },
+    {
+      "label": "_statusBadge",
+      "file_type": "code",
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_payments_screen_dart_statusbadge",
+      "community": 2,
+      "norm_label": "_statusbadge"
+    },
+    {
+      "label": "Container",
+      "file_type": "code",
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_payments_screen_dart_container",
+      "community": 2,
+      "norm_label": "container"
+    },
+    {
+      "label": "_categoryIcon",
+      "file_type": "code",
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_payments_screen_dart_categoryicon",
+      "community": 2,
+      "norm_label": "_categoryicon"
+    },
+    {
+      "label": "MapEntry",
+      "file_type": "code",
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_payments_screen_dart_mapentry",
+      "community": 2,
+      "norm_label": "mapentry"
+    },
+    {
+      "label": "profile_screen.dart",
+      "file_type": "code",
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "id": "home_profile_screen_dart",
+      "community": 2,
+      "norm_label": "profile_screen.dart"
+    },
+    {
+      "label": "_ProfileScreenState",
+      "file_type": "code",
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_profile_screen_dart_profilescreenstate",
+      "community": 2,
+      "norm_label": "_profilescreenstate"
+    },
+    {
+      "label": "_buildProfileListTile",
+      "file_type": "code",
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_profile_screen_dart_buildprofilelisttile",
+      "community": 2,
+      "norm_label": "_buildprofilelisttile"
+    },
+    {
+      "label": "activity_screen.dart",
+      "file_type": "code",
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "id": "activity_screen_dart",
+      "community": 0,
+      "norm_label": "activity_screen.dart"
+    },
+    {
+      "label": "settings_screen.dart",
+      "file_type": "code",
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "id": "settings_screen_dart",
+      "community": 7,
+      "norm_label": "settings_screen.dart"
+    },
+    {
+      "label": "_SettingsScreenState",
+      "file_type": "code",
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_settings_screen_dart_settingsscreenstate",
+      "community": 7,
+      "norm_label": "_settingsscreenstate"
+    },
+    {
+      "label": "_showPersonalInfoDialog",
+      "file_type": "code",
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_settings_screen_dart_showpersonalinfodialog",
+      "community": 7,
+      "norm_label": "_showpersonalinfodialog"
+    },
+    {
+      "label": "_showPrivacyDialog",
+      "file_type": "code",
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_settings_screen_dart_showprivacydialog",
+      "community": 7,
+      "norm_label": "_showprivacydialog"
+    },
+    {
+      "label": "Divider",
+      "file_type": "code",
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_settings_screen_dart_divider",
+      "community": 7,
+      "norm_label": "divider"
+    },
+    {
+      "label": "_privacyItem",
+      "file_type": "code",
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_settings_screen_dart_privacyitem",
+      "community": 7,
+      "norm_label": "_privacyitem"
+    },
+    {
+      "label": "_showLanguageDialog",
+      "file_type": "code",
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_settings_screen_dart_showlanguagedialog",
+      "community": 7,
+      "norm_label": "_showlanguagedialog"
+    },
+    {
+      "label": "_showThemeDialog",
+      "file_type": "code",
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_settings_screen_dart_showthemedialog",
+      "community": 7,
+      "norm_label": "_showthemedialog"
+    },
+    {
+      "label": "_sectionLabel",
+      "file_type": "code",
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_home_settings_screen_dart_sectionlabel",
+      "community": 7,
+      "norm_label": "_sectionlabel"
+    },
+    {
+      "label": "comment.dart",
+      "file_type": "code",
+      "source_file": "models/comment.dart",
+      "source_location": null,
+      "id": "models_comment_dart",
+      "community": 1,
+      "norm_label": "comment.dart"
+    },
+    {
+      "label": "Comment",
+      "file_type": "code",
+      "source_file": "models/comment.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_models_comment_dart_comment",
+      "community": 1,
+      "norm_label": "comment"
+    },
+    {
+      "label": "Expense",
+      "file_type": "code",
+      "source_file": "models/expense.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_models_expense_dart_expense",
+      "community": 1,
+      "norm_label": "expense"
+    },
+    {
+      "label": "_parseDouble",
+      "file_type": "code",
+      "source_file": "models/expense.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_models_expense_dart_parsedouble",
+      "community": 1,
+      "norm_label": "_parsedouble"
+    },
+    {
+      "label": "_parseDateTime",
+      "file_type": "code",
+      "source_file": "models/expense.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_models_expense_dart_parsedatetime",
+      "community": 1,
+      "norm_label": "_parsedatetime"
+    },
+    {
+      "label": "FriendRequest",
+      "file_type": "code",
+      "source_file": "models/friend_request.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_models_friend_request_dart_friendrequest",
+      "community": 1,
+      "norm_label": "friendrequest"
+    },
+    {
+      "label": "GroupModel",
+      "file_type": "code",
+      "source_file": "models/group.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_models_group_dart_groupmodel",
+      "community": 1,
+      "norm_label": "groupmodel"
+    },
+    {
+      "label": "buildInviteCode",
+      "file_type": "code",
+      "source_file": "models/group.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_models_group_dart_buildinvitecode",
+      "community": 1,
+      "norm_label": "buildinvitecode"
+    },
+    {
+      "label": "GroupInvitation",
+      "file_type": "code",
+      "source_file": "models/group_invitation.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_models_group_invitation_dart_groupinvitation",
+      "community": 1,
+      "norm_label": "groupinvitation"
+    },
+    {
+      "label": "PaymentRequest",
+      "file_type": "code",
+      "source_file": "models/payment_request.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_models_payment_request_dart_paymentrequest",
+      "community": 1,
+      "norm_label": "paymentrequest"
+    },
+    {
+      "label": "FirestoreService",
+      "file_type": "code",
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_services_firestore_service_dart_firestoreservice",
+      "community": 1,
+      "norm_label": "firestoreservice"
+    },
+    {
+      "label": "emitCombined",
+      "file_type": "code",
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_services_firestore_service_dart_emitcombined",
+      "community": 1,
+      "norm_label": "emitcombined"
+    },
+    {
+      "label": "sendGroupInvitation",
+      "file_type": "code",
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_services_firestore_service_dart_sendgroupinvitation",
+      "community": 1,
+      "norm_label": "sendgroupinvitation"
+    },
+    {
+      "label": "sendJoinRequest",
+      "file_type": "code",
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_services_firestore_service_dart_sendjoinrequest",
+      "community": 1,
+      "norm_label": "sendjoinrequest"
+    },
+    {
+      "label": "createNotification",
+      "file_type": "code",
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_services_firestore_service_dart_createnotification",
+      "community": 1,
+      "norm_label": "createnotification"
+    },
+    {
+      "label": "createExpense",
+      "file_type": "code",
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_services_firestore_service_dart_createexpense",
+      "community": 1,
+      "norm_label": "createexpense"
+    },
+    {
+      "label": "dart:async",
+      "file_type": "code",
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "id": "dart_async",
+      "community": 1,
+      "norm_label": "dart:async"
+    },
+    {
+      "label": "app_theme.dart",
+      "file_type": "code",
+      "source_file": "theme/app_theme.dart",
+      "source_location": null,
+      "id": "theme_app_theme_dart",
+      "community": 0,
+      "norm_label": "app_theme.dart"
+    },
+    {
+      "label": "AppTheme",
+      "file_type": "code",
+      "source_file": "theme/app_theme.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_theme_app_theme_dart_apptheme",
+      "community": 0,
+      "norm_label": "apptheme"
+    },
+    {
+      "label": "ThemeData",
+      "file_type": "code",
+      "source_file": "theme/app_theme.dart",
+      "source_location": null,
+      "id": "c_dev_proyecto_app_lib_theme_app_theme_dart_themedata",
+      "community": 0,
+      "norm_label": "themedata"
+    },
+    {
+      "label": "google_sign_in_button.dart",
+      "file_type": "code",
+      "source_file": "widgets/google_sign_in_button.dart",
+      "source_location": null,
+      "id": "widgets_google_sign_in_button_dart",
+      "community": 0,
+      "norm_label": "google_sign_in_button.dart"
+    }
+  ],
+  "links": [
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "firebase_options.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "firebase_options_dart",
+      "target": "c_dev_proyecto_app_lib_firebase_options_dart_defaultfirebaseoptions"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "firebase_options.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "firebase_options_dart",
+      "target": "c_dev_proyecto_app_lib_firebase_options_dart_unsupportederror"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "firebase_options.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "firebase_options_dart",
+      "target": "package_firebase_core_firebase_core_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "firebase_options.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "firebase_options_dart",
+      "target": "package_flutter_foundation_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_dart",
+      "target": "package_firebase_core_firebase_core_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/auth_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "auth_service_dart",
+      "target": "package_flutter_foundation_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "services_firestore_service_dart",
+      "target": "package_flutter_foundation_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_myapp"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_main"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_build"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_materialapp"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_scaffold"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_mainnavigation"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_dart",
+      "target": "auth_login_screen_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_dart",
+      "target": "package_cloud_firestore_cloud_firestore_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_dart",
+      "target": "package_firebase_auth_firebase_auth_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_dart",
+      "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_dart",
+      "target": "package_proyecto_app_auth_login_screen_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_dart",
+      "target": "package_proyecto_app_firebase_options_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_dart",
+      "target": "package_proyecto_app_home_main_navigation_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_dart",
+      "target": "package_proyecto_app_theme_app_theme_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_dart",
+      "target": "package_shared_preferences_shared_preferences_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "main_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/login_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "auth_login_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_build"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/register_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "register_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_build"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "activity_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_build"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_build"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_build"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_build"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_build"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_main_navigation_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_build"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_build"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_profile_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_build"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_build"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "widgets/google_sign_in_button.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "widgets_google_sign_in_button_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_build"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/login_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "auth_login_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_scaffold"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/register_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "register_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_scaffold"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "activity_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_scaffold"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_scaffold"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_scaffold"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_scaffold"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_scaffold"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_main_navigation_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_scaffold"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_scaffold"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_profile_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_scaffold"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_scaffold"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_main_navigation_dart",
+      "target": "c_dev_proyecto_app_lib_main_dart_mainnavigation"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "package_cloud_firestore_cloud_firestore_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "package_cloud_firestore_cloud_firestore_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "models/comment.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "models_comment_dart",
+      "target": "package_cloud_firestore_cloud_firestore_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "models/expense.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "models_expense_dart",
+      "target": "package_cloud_firestore_cloud_firestore_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "models/friend_request.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "models_friend_request_dart",
+      "target": "package_cloud_firestore_cloud_firestore_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "models/group.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "models_group_dart",
+      "target": "package_cloud_firestore_cloud_firestore_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "models/group_invitation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "models_group_invitation_dart",
+      "target": "package_cloud_firestore_cloud_firestore_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "models/payment_request.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "models_payment_request_dart",
+      "target": "package_cloud_firestore_cloud_firestore_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "services_firestore_service_dart",
+      "target": "package_cloud_firestore_cloud_firestore_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/auth_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "auth_service_dart",
+      "target": "package_firebase_auth_firebase_auth_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/login_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "auth_login_screen_dart",
+      "target": "package_firebase_auth_firebase_auth_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/register_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "register_screen_dart",
+      "target": "package_firebase_auth_firebase_auth_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "activity_screen_dart",
+      "target": "package_firebase_auth_firebase_auth_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "package_firebase_auth_firebase_auth_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "package_firebase_auth_firebase_auth_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "package_firebase_auth_firebase_auth_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "package_firebase_auth_firebase_auth_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_main_navigation_dart",
+      "target": "package_firebase_auth_firebase_auth_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "package_firebase_auth_firebase_auth_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_profile_screen_dart",
+      "target": "package_firebase_auth_firebase_auth_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "package_firebase_auth_firebase_auth_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/login_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "auth_login_screen_dart",
+      "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/register_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "register_screen_dart",
+      "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "activity_screen_dart",
+      "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_main_navigation_dart",
+      "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_profile_screen_dart",
+      "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "theme/app_theme.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "theme_app_theme_dart",
+      "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "widgets/google_sign_in_button.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "widgets_google_sign_in_button_dart",
+      "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "package_shared_preferences_shared_preferences_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/auth_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "auth_service_dart",
+      "target": "c_dev_proyecto_app_lib_auth_auth_service_dart_authservice"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/auth_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "auth_service_dart",
+      "target": "c_dev_proyecto_app_lib_auth_auth_service_dart_exception"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "services_firestore_service_dart",
+      "target": "c_dev_proyecto_app_lib_auth_auth_service_dart_exception"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/auth_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "auth_service_dart",
+      "target": "package_google_sign_in_google_sign_in_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/login_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "auth_login_screen_dart",
+      "target": "c_dev_proyecto_app_lib_auth_login_screen_dart_login"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/login_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "auth_login_screen_dart",
+      "target": "c_dev_proyecto_app_lib_auth_login_screen_dart_loginwithgoogle"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/login_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "auth_login_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_dispose"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/login_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "auth_login_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_sizedbox"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/login_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "auth_login_screen_dart",
+      "target": "package_proyecto_app_widgets_google_sign_in_button_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/login_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "auth_login_screen_dart",
+      "target": "auth_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/login_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "auth_login_screen_dart",
+      "target": "register_screen_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/register_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "register_screen_dart",
+      "target": "package_proyecto_app_widgets_google_sign_in_button_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/register_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "register_screen_dart",
+      "target": "auth_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_profile_screen_dart",
+      "target": "auth_service_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/register_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "register_screen_dart",
+      "target": "c_dev_proyecto_app_lib_auth_register_screen_dart_register"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/register_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "register_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_snackbar"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/register_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "register_screen_dart",
+      "target": "c_dev_proyecto_app_lib_auth_register_screen_dart_registerwithgoogle"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/register_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "register_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_dispose"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "auth/register_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "register_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_sizedbox"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "activity_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_activity_screen_dart_activityitem"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "activity_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_activity_screen_dart_activityscreenstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "activity_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_activity_screen_dart_emptystate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_activity_screen_dart_emptystate"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "activity_screen_dart",
+      "target": "models_expense_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "models_expense_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "models_expense_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "models/expense.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "models_expense_dart",
+      "target": "c_dev_proyecto_app_lib_models_expense_dart_expense"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "models/expense.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "models_expense_dart",
+      "target": "c_dev_proyecto_app_lib_models_expense_dart_parsedouble"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "models/expense.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "models_expense_dart",
+      "target": "c_dev_proyecto_app_lib_models_expense_dart_parsedatetime"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "services_firestore_service_dart",
+      "target": "models_expense_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "activity_screen_dart",
+      "target": "models_group_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "models_group_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "models_group_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "models_group_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "models_group_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "models/group.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "models_group_dart",
+      "target": "c_dev_proyecto_app_lib_models_group_dart_groupmodel"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "models/group.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "models_group_dart",
+      "target": "c_dev_proyecto_app_lib_models_group_dart_buildinvitecode"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "services_firestore_service_dart",
+      "target": "models_group_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "activity_screen_dart",
+      "target": "services_firestore_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "services_firestore_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "services_firestore_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "services_firestore_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "services_firestore_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_profile_screen_dart",
+      "target": "services_firestore_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "services_firestore_service_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "services_firestore_service_dart",
+      "target": "c_dev_proyecto_app_lib_services_firestore_service_dart_firestoreservice"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "services_firestore_service_dart",
+      "target": "c_dev_proyecto_app_lib_services_firestore_service_dart_emitcombined"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "services_firestore_service_dart",
+      "target": "c_dev_proyecto_app_lib_services_firestore_service_dart_sendgroupinvitation"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "services_firestore_service_dart",
+      "target": "c_dev_proyecto_app_lib_services_firestore_service_dart_sendjoinrequest"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "services_firestore_service_dart",
+      "target": "c_dev_proyecto_app_lib_services_firestore_service_dart_createnotification"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "services_firestore_service_dart",
+      "target": "c_dev_proyecto_app_lib_services_firestore_service_dart_createexpense"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "services_firestore_service_dart",
+      "target": "dart_async"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "services_firestore_service_dart",
+      "target": "models_friend_request_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "services_firestore_service_dart",
+      "target": "models_group_invitation_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "services/firestore_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "services_firestore_service_dart",
+      "target": "models_payment_request_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_friends_screen_dart_friendsscreenstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_friends_screen_dart_friendtile"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_friends_screen_dart_pendingrequesttile"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_friends_screen_dart_friendprofilesheet"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_friends_screen_dart_friendprofiledata"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_initstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_dispose"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_statefulbuilder"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_alertdialog"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_sizedbox"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_friends_screen_dart_linearprogressindicator"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_snackbar"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_friends_screen_dart_showfriendprofile"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_friends_screen_dart_draggablescrollablesheet"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_friends_screen_dart_tab"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_friends_screen_dart_row"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_friends_screen_dart_text"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_groups_screen_dart_center"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_card"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_friends_screen_dart_listview"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "dart_convert"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/friends_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_friends_screen_dart",
+      "target": "models_friend_request_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_main_navigation_dart",
+      "target": "home_friends_screen_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_friends_screen_dart_text"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_friends_screen_dart_text"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "dart_convert"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "dart_convert"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "dart_convert"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "dart_convert"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_profile_screen_dart",
+      "target": "dart_convert"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "models/friend_request.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "models_friend_request_dart",
+      "target": "c_dev_proyecto_app_lib_models_friend_request_dart_friendrequest"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_groups_screen_dart_groupsscreenstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_groups_screen_dart_friendcheckboxtile"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_groups_screen_dart_pendinginvitationslist"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_initstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_dispose"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_statefulbuilder"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_alertdialog"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_sizedbox"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_snackbar"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_groups_screen_dart_center"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_card"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_groups_screen_dart_checkboxlisttile"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_column"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "package_proyecto_app_models_friend_request_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "package_proyecto_app_models_group_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "package_proyecto_app_models_group_invitation_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "package_proyecto_app_services_firestore_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/groups_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_groups_screen_dart",
+      "target": "package_proyecto_app_home_home_screen_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_main_navigation_dart",
+      "target": "home_groups_screen_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "activity_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_groups_screen_dart_center"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_groups_screen_dart_center"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_groups_screen_dart_center"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_main_navigation_dart",
+      "target": "package_proyecto_app_models_friend_request_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_main_navigation_dart",
+      "target": "package_proyecto_app_services_firestore_service_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_settlement"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_groupdetailscreenstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_balancecard"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_pendingjoinrequestslist"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_initstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_getmembername"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_showdialog"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_statefulbuilder"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_alertdialog"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_sizedbox"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_duration"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_snackbar"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_popscope"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_showmodalbottomsheet"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_spacer"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_showreceiptdialog"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_showmemberprofile"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_showexpensecommentssheet"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_settings_screen_dart_divider"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_align"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_textspan"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_dispose"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_categoryicon"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_showmanagememberssheet"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_inputchip"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_customscrollview"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_popupmenuitem"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_main_navigation_dart_gesturedetector"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_column"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_container"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_group_detail_screen_dart_size"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_listtile"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "package_image_picker_image_picker_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "package_flutter_services_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "package_share_plus_share_plus_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "models_group_invitation_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/group_detail_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_group_detail_screen_dart",
+      "target": "models_payment_request_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "package_image_picker_image_picker_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_profile_screen_dart",
+      "target": "package_image_picker_image_picker_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "models/group_invitation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "models_group_invitation_dart",
+      "target": "c_dev_proyecto_app_lib_models_group_invitation_dart_groupinvitation"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "models_payment_request_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "models/payment_request.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "models_payment_request_dart",
+      "target": "c_dev_proyecto_app_lib_models_payment_request_dart_paymentrequest"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "models/payment_request.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "models_payment_request_dart",
+      "target": "c_dev_proyecto_app_lib_models_expense_dart_parsedouble"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "models/payment_request.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "models_payment_request_dart",
+      "target": "c_dev_proyecto_app_lib_models_expense_dart_parsedatetime"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_balancesummary"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_homescreenstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_initstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_dispose"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_snackbar"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_statefulbuilder"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_alertdialog"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_sizedbox"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_shownotificationsdialog"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_padding"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_column"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_listtile"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_iconbutton"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_card"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_buildactioncard"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/home_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_home_screen_dart",
+      "target": "payments_screen_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "activity_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_initstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_main_navigation_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_initstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_initstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_profile_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_initstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_initstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_dispose"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_snackbar"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_snackbar"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "activity_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_sizedbox"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_main_navigation_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_sizedbox"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_sizedbox"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_profile_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_sizedbox"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_sizedbox"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "widgets/google_sign_in_button.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "widgets_google_sign_in_button_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_sizedbox"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_padding"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/activity_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "activity_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_column"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_column"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_card"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_profile_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_home_screen_dart_card"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_groupedpayment"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_paymentsscreenstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_loadpayments"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_loadallrequests"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_refreshdata"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_showreceiptdialog"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_buildhistorytab"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_errorstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_buildrequeststab"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_requestcard"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_spacer"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_popscope"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_statusbadge"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_container"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_categoryicon"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/payments_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "payments_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_payments_screen_dart_mapentry"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_profile_screen_dart",
+      "target": "payments_screen_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_main_navigation_dart",
+      "target": "c_dev_proyecto_app_lib_home_main_navigation_dart_mainnavigationstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_main_navigation_dart",
+      "target": "home_profile_screen_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_main_navigation_dart",
+      "target": "c_dev_proyecto_app_lib_home_main_navigation_dart_buildnavitem"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_main_navigation_dart",
+      "target": "c_dev_proyecto_app_lib_home_main_navigation_dart_gesturedetector"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/main_navigation.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_main_navigation_dart",
+      "target": "package_proyecto_app_home_home_screen_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "widgets/google_sign_in_button.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "widgets_google_sign_in_button_dart",
+      "target": "c_dev_proyecto_app_lib_home_main_navigation_dart_gesturedetector"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_profile_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_profile_screen_dart_profilescreenstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_profile_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_profile_screen_dart_buildprofilelisttile"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_profile_screen_dart",
+      "target": "activity_screen_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/profile_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "home_profile_screen_dart",
+      "target": "settings_screen_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_settings_screen_dart_settingsscreenstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_settings_screen_dart_showpersonalinfodialog"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_settings_screen_dart_showprivacydialog"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_settings_screen_dart_divider"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_settings_screen_dart_privacyitem"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_settings_screen_dart_showlanguagedialog"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_settings_screen_dart_showthemedialog"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "home/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "settings_screen_dart",
+      "target": "c_dev_proyecto_app_lib_home_settings_screen_dart_sectionlabel"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "models/comment.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "models_comment_dart",
+      "target": "c_dev_proyecto_app_lib_models_comment_dart_comment"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "theme/app_theme.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "theme_app_theme_dart",
+      "target": "c_dev_proyecto_app_lib_theme_app_theme_dart_apptheme"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "theme/app_theme.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "theme_app_theme_dart",
+      "target": "c_dev_proyecto_app_lib_theme_app_theme_dart_themedata"
+    }
+  ],
+  "hyperedges": []
+}

@@ -1,0 +1,11 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Proyecto App (Web Port 5555)",
+      "request": "launch",
+      "type": "dart",
+      "args": ["--web-port", "5555", "--web-hostname", "localhost"]
+    }
+  ]
+}

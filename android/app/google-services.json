@@ -1,0 +1,126 @@
+{
+  "project_info": {
+    "project_number": "24617827560",
+    "project_id": "smartbudget-88efb",
+    "storage_bucket": "smartbudget-88efb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24617827560:android:a6f16377f497816cd71d5d",
+        "android_client_info": {
+          "package_name": "com.example.ejemplo1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "24617827560-9jvj7gpo1da64nmpe3u3ac6a1kt39meg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYsQDkk3ljTXSk2nu8K5U5KVR9kfgW8eM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "24617827560-9jvj7gpo1da64nmpe3u3ac6a1kt39meg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "24617827560-jfr4f100pk356krbbrqp9b74kn0q26l6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.smartbudget"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24617827560:android:db90c9832d2ab7a5d71d5d",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "24617827560-4aeesaql6c51njj2prmd0djh4u4nmgns.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.proyecto_app",
+            "certificate_hash": "8af2da98a575db273d158fb0d4fdb3f5052148e6"
+          }
+        },
+        {
+          "client_id": "24617827560-9jvj7gpo1da64nmpe3u3ac6a1kt39meg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYsQDkk3ljTXSk2nu8K5U5KVR9kfgW8eM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "24617827560-9jvj7gpo1da64nmpe3u3ac6a1kt39meg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "24617827560-jfr4f100pk356krbbrqp9b74kn0q26l6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.smartbudget"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24617827560:android:e8a1a34ef29af4acd71d5d",
+        "android_client_info": {
+          "package_name": "com.example.smartbudget"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "24617827560-9jvj7gpo1da64nmpe3u3ac6a1kt39meg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYsQDkk3ljTXSk2nu8K5U5KVR9kfgW8eM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "24617827560-9jvj7gpo1da64nmpe3u3ac6a1kt39meg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "24617827560-jfr4f100pk356krbbrqp9b74kn0q26l6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.smartbudget"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

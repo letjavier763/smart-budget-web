@@ -1,0 +1,192 @@
+========================================================================
+             DOCUMENTACIÓN OFICIAL DEL PROYECTO: SMART BUDGET
+========================================================================
+
+------------------------------------------------------------------------
+1. EXPLICACIÓN GENERAL DEL PROYECTO
+------------------------------------------------------------------------
+Smart Budget es una aplicación multiplataforma (móvil y web) orientada a la
+administración colectiva y el reparto equitativo de gastos grupales. La
+aplicación permite a los usuarios registrarse, formar grupos de gastos (para
+viajes, hogares compartidos, suscripciones, etc.), registrar deudas y cobros
+de forma centralizada, comentar en los gastos del grupo, adjuntar recibos o
+boletas y saldar sus balances a través de cobros/pagos reactivos en tiempo real.
+
+Adicionalmente, el sistema cuenta con un panel centralizado de administración
+web adaptativo que permite visualizar métricas del sistema (número total de
+grupos, volumen de miembros por grupo, desglose de top 5 grupos), gestionar
+los usuarios del sistema, alternar roles de seguridad (Admin/User) y dar de
+baja o eliminar usuarios y grupos activos según políticas de moderación.
+
+------------------------------------------------------------------------
+2. TECNOLOGÍAS UTILIZADAS
+------------------------------------------------------------------------
+El proyecto está construido sobre las siguientes tecnologías core:
+
+* Dart (SDK ^3.11.3): Lenguaje de programación de tipado fuerte diseñado para
+  desarrollo rápido y óptimo rendimiento en cliente.
+* Flutter: SDK de Google para compilar aplicaciones compiladas de manera nativa 
+  para móvil (Android) y web a partir de una única base de código.
+* Firebase Firestore: Base de datos documental NoSQL de baja latencia en la nube
+  con sincronización activa y reactiva de datos mediante streams y snapshots.
+* Firebase Authentication: Servicio gestionado de autenticación segura de
+  usuarios con soporte para credenciales de Correo/Contraseña e inicio de
+  sesión integrado con Google Sign-In.
+
+------------------------------------------------------------------------
+3. LIBRERÍAS Y DEPENDENCIAS (pubspec.yaml)
+------------------------------------------------------------------------
+Las librerías externas declaradas en el manifiesto pubspec.yaml del proyecto son:
+
+* firebase_core: Inicialización e integración nativa de la infraestructura de Firebase.
+* firebase_auth: Administración de sesiones de usuario, inicio, registro y restablecimiento de contraseñas.
+* cloud_firestore: Interacción reactiva de colecciones y documentos de base de datos.
+* google_sign_in: Integración nativa y web del flujo de inicio de sesión con cuentas de Google.
+* share_plus: Utilidad para compartir códigos únicos de invitación de grupos a través del portapapeles o redes.
+* shared_preferences: Almacenamiento local persistente en disco (idioma activo, tema oscuro/claro y modo demo).
+* image_picker: Captura y selección de imágenes desde la cámara o galería del dispositivo.
+* flutter_svg: Renderizado de gráficos vectoriales (SVG) en la interfaz gráfica.
+* flutter_native_splash: Configuración y renderizado de la pantalla de carga nativa en Android y Web.
+* flutter_launcher_icons: Utilidad de generación automática de iconos de lanzador para las diferentes plataformas.
+
+------------------------------------------------------------------------
+4. ESTRUCTURA DE LA BASE DE DATOS (Firestore)
+------------------------------------------------------------------------
+La base de datos consta de las siguientes colecciones principales:
+
+A. Colección: `users`
+   * Documento: `uid` del usuario
+   * Campos:
+     - `displayName` (String): Nombre del usuario.
+     - `email` (String): Correo electrónico del usuario (clave de búsqueda).
+     - `phoneNumber` (String): Número telefónico.
+     - `photoUrl` (String - opcional): Foto de perfil en Base64 o URL de red (Google Auth).
+     - `role` (String): Rol de usuario ('admin' o 'user').
+     - `createdAt` (Timestamp): Fecha de registro del usuario.
+
+B. Colección: `groups`
+   * Documento: `groupId` aleatorio autogenerado
+   * Campos:
+     - `name` (String): Nombre descriptivo del grupo.
+     - `code` (String): Código único de invitación (primeros 8 caracteres de la ID).
+     - `createdBy` (String): Correo electrónico del usuario creador del grupo.
+     - `members` (List<String>): Lista de correos de usuarios miembros del grupo.
+     - `admins` (List<String>): Lista de correos de usuarios administradores del grupo.
+     - `createdAt` (Timestamp): Fecha de creación del grupo.
+     - `imageUrl` (String - opcional): Logotipo o avatar base64 personalizado del grupo.
+
+C. Colección: `expenses` (Subcolección de cada documento de `groups`)
+   * Documento: `expenseId` aleatorio
+   * Campos:
+     - `title` (String): Descripción del gasto o concepto.
+     - `amount` (Double): Importe monetario total del gasto.
+     - `paidBy` (String): Correo del usuario que pagó.
+     - `createdAt` (Timestamp): Fecha de creación del registro.
+     - `involvedMembers` (List<String>): Correos de los usuarios que comparten este gasto.
+     - `type` (String): Tipo de transacción ('expense' para gasto, 'payment' para abono).
+     - `paidTo` (String - opcional): Correo del destinatario en caso de transferencia/pago.
+     - `category` (String): Rubro del gasto ('Bien', 'Servicio', 'Actividad', etc.).
+     - `dueDate` (Timestamp - opcional): Fecha límite de pago para gastos.
+     - `imageUrl` (String - opcional): Recibo o boleta base64 asociada.
+
+D. Colección: `friend_requests`
+   * Documento: `requestId` aleatorio
+   * Campos:
+     - `fromEmail` (String): Correo del solicitante.
+     - `toEmail` (String): Correo del destinatario.
+     - `status` (String): Estado de la invitación ('pending', 'accepted', 'rejected').
+     - `createdAt` (Timestamp): Fecha de creación del registro.
+
+E. Colección: `payment_requests`
+   * Documento: `requestId` aleatorio
+   * Campos:
+     - `groupId` (String): ID del grupo origen del pago.
+     - `fromEmail` (String): Correo del usuario deudor que envía el pago.
+     - `toEmail` (String): Correo del usuario acreedor que recibe el pago.
+     - `amount` (Double): Importe transferido.
+     - `method` (String): Canal de pago ('Efectivo', 'Transferencia', 'Tigo Money', 'Otro').
+     - `reference` (String - opcional): Número de transacción o referencia.
+     - `status` (String): Estado del pago ('pendiente', 'confirmado', 'rechazado').
+     - `createdAt` (Timestamp): Fecha de envío de la solicitud.
+     - `resolvedAt` (Timestamp - opcional): Fecha de confirmación/rechazo del pago.
+     - `rubro` (String): Categoría ('Suscripción', 'Comida', 'Alquiler', etc.).
+     - `date` (Timestamp): Fecha del pago efectiva.
+     - `imageUrl` (String - opcional): Comprobante o captura base64 adjunta.
+
+------------------------------------------------------------------------
+5. ESTRUCTURA DE DATOS (Modelos de Dart en lib/models/)
+------------------------------------------------------------------------
+* Class `Expense` (lib/models/expense.dart): Representa transacciones y gastos
+  grupales con soporte de tipado robusto numérico, parseo seguro y deserialización.
+* Class `GroupModel` (lib/models/group.dart): Modelo de datos del grupo con
+  métodos estáticos para construir códigos de invitación a partir de subcadenas.
+* Class `PaymentRequest` (lib/models/payment_request.dart): Representa solicitudes
+  formales de liquidación de cuentas con conversiones seguras para valores double/fechas
+  y serialización `toMap()`.
+* Class `FriendRequest` (lib/models/friend_request.dart): Estructura para registrar
+  e interactuar con solicitudes de amistad pendientes de respuesta en base de datos.
+* Class `Comment` (lib/models/comment.dart): Modelo para representar los mensajes
+  y comentarios dentro de los hilos de conversación de cada gasto.
+
+------------------------------------------------------------------------
+6. EXPLICACIÓN DE CADA PARTE DEL PROYECTO (Módulos de Código)
+------------------------------------------------------------------------
+
+A. INICIALIZACIÓN Y CONFIGURACIÓN CORE
+   * `lib/main.dart`: Punto de entrada de la aplicación. Inicializa Firebase, activa
+     la persistencia local de datos en Firestore, carga las configuraciones guardadas
+     (idioma y tema visual) de SharedPreferences e instancia `MyApp` bajo notificadores de estado.
+
+B. MÓDULO DE AUTENTICACIÓN (lib/auth/)
+   * `auth_service.dart`: Fachada de servicios de Firebase Auth para inicio de sesión,
+     registro, logout e inicio con Google Sign-In.
+   - Vistas:
+     * `login_screen.dart`: Pantalla de Login limpia, con campos validados, login con Google
+       y accesos rápidos.
+     * `register_screen.dart`: Formulario detallado de registro con indicador en tiempo real
+       de robustez de contraseña, selección de foto de perfil y flujos asíncronos de registro.
+     * `forgot_password_screen.dart`: Formulario para envío de correos de recuperación de contraseña.
+
+C. MÓDULO DE NAVEGACIÓN Y CONFIGURACIÓN (lib/home/)
+   * `main_navigation.dart`: Controlador maestro de vistas. Utiliza diseño responsivo.
+     Para resoluciones Web, despliega un `NavigationRail` lateral retráctil personalizado con los
+     colores corporativos. Para móviles, despliega una barra de navegación inferior clásica
+     `BottomNavigationBar`. Si detecta rol administrador, conmuta al Dashboard de Admin.
+   * `settings_screen.dart`: Opciones de personalización: cambio de idioma (Inglés/Español) a través
+     de la clase `Translations`, alternancia de modos oscuros/claros, y el switch "Modo Administrador (Demo)"
+     para facilitar la visualización del panel web a evaluadores.
+
+D. MÓDULO DE CLIENTE (Vistas en lib/home/)
+   * `home_screen.dart`: Pantalla de bienvenida. Muestra el estado financiero global consolidado del
+     usuario (Monto que debe vs Monto que le deben), listado rápido de deudas e incluye un badge dinámico
+     de color rojo que indica la cantidad de solicitudes de pago pendientes de resolución.
+   * `groups_screen.dart`: Lista de grupos del usuario con avatares responsivos. Permite crear nuevos grupos
+     o unirse a existentes mediante diálogos intuitivos y copiar el código único.
+   * `group_detail_screen.dart`: La pantalla con mayor lógica de negocio del cliente.
+     - Mapea balances de gastos mediante un algoritmo de resolución de deudas cruzadas.
+     - Lista gastos de forma cronológica, con filtrado por categorías.
+     - Panel de detalles de grupo, foro de comentarios y chat por cada gasto (`Comment`).
+     - Creación de deudas complejas dividiendo montos entre múltiples miembros seleccionados de forma interactiva.
+   * `friends_screen.dart`: Panel para añadir amigos por correo, gestionar solicitudes pendientes y listar amigos activos.
+   * `payments_screen.dart`: Registro visual del historial de cobros y pagos con subida de comprobante, categorizaciones y confirmaciones.
+
+E. MÓDULO DE ADMINISTRACIÓN (lib/home/admin_dashboard_screen.dart)
+   * `admin_dashboard_screen.dart`: Panel de control web adaptado a pantallas grandes.
+     - Pestaña de Estadísticas: Lienzo interactivo hecho con `CustomPaint` que pinta gráficos de tipo dona
+       para el desglose de grupos (pequeños, medianos y grandes) y gráficos de barra responsivos con el Top 5 de grupos con más miembros.
+     - Pestaña de Usuarios: Grid interactiva de usuarios donde se listan perfiles, se alternan roles (Admin/User) y se eliminan cuentas.
+     - Pestaña de Grupos: Listado de grupos donde se inspeccionan códigos de acceso y se pueden dar de baja de la plataforma.
+
+F. CAPA DE INTERFAZ REUTILIZABLE (lib/widgets/ & lib/utils/)
+   * `group_avatar.dart`: Identificador visual para grupos. Si el nombre coincide con un servicio premium
+     (ej: Netflix, Spotify), carga el logotipo corporativo local sobre una tarjeta con el color corporativo.
+     Para conceptos del hogar (Comida, Renta, Agua, Internet, Viajes), carga iconos representativos sobre
+     degradados. En caso contrario, genera un degradado con la letra inicial.
+   * `profile_onboarding_dialog.dart`: Dialogo forzoso que exige completar datos faltantes (nombre de usuario,
+     teléfono y foto) a usuarios nuevos antes de acceder a la plataforma.
+   * `print_utility.dart`: Manejador de exportación condicional. Mapea la impresión de datos de pantalla a PDF
+     utilizando la biblioteca del sistema web (`dart:html` e impresión nativa `window.print()`), inyectando
+     estilos CSS profesionales tipo zebra y separadores de sección.
+   * `app_theme.dart`: Centralización de paleta de colores corporativos (azul rey, gris pizarra, alertas rojas y acentos verdes).
+   * `translations.dart`: Estructuras de localización y traducciones al Español e Inglés de toda la aplicación.
+========================================================================
