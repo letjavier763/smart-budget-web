@@ -9,6 +9,9 @@ class GroupModel {
   final List<String> admins;
   final DateTime createdAt;
   final String? imageUrl;
+  final int? maxMembers;
+  final double? initialBudget;
+  final DateTime? activeUntil;
 
   GroupModel({
     required this.id,
@@ -19,7 +22,12 @@ class GroupModel {
     required this.admins,
     required this.createdAt,
     this.imageUrl,
+    this.maxMembers,
+    this.initialBudget,
+    this.activeUntil,
   });
+
+  bool get isExpired => activeUntil != null && DateTime.now().isAfter(activeUntil!);
 
   static String buildInviteCode(String groupId) {
     return groupId.substring(0, 8).toUpperCase();
@@ -40,6 +48,9 @@ class GroupModel {
       admins: admins,
       createdAt: (data['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
       imageUrl: data['imageUrl'] as String?,
+      maxMembers: data['maxMembers'] as int?,
+      initialBudget: (data['initialBudget'] as num?)?.toDouble(),
+      activeUntil: (data['activeUntil'] as Timestamp?)?.toDate(),
     );
   }
 }

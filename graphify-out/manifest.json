@@ -16,7 +16,7 @@
     "hash": "a850d8b8210f806de67368eb38cfe2b7"
   },
   "C:\\dev\\proyecto_app\\android\\app\\src\\main\\java\\io\\flutter\\plugins\\GeneratedPluginRegistrant.java": {
-    "mtime": 1779517989.872561,
+    "mtime": 1780088392.4372475,
     "hash": "e5a61d5945a95beae8b762078d06973c"
   },
   "C:\\dev\\proyecto_app\\android\\app\\src\\main\\kotlin\\com\\example\\proyecto_app\\MainActivity.kt": {
@@ -56,8 +56,8 @@
     "hash": "4510d8c41220e8ec8834cc0adaedfe51"
   },
   "C:\\dev\\proyecto_app\\lib\\main.dart": {
-    "mtime": 1779506825.5771003,
-    "hash": "f95f2007bc61dddb42b349e0e0456e17"
+    "mtime": 1780040421.7491794,
+    "hash": "6bf0c7e1599bddcd164922874901b8a9"
   },
   "C:\\dev\\proyecto_app\\lib\\auth\\auth_service.dart": {
     "mtime": 1779475678.871515,
@@ -80,32 +80,32 @@
     "hash": "61b8b25b5128d2f075fbd686e5b99256"
   },
   "C:\\dev\\proyecto_app\\lib\\home\\admin_dashboard_screen.dart": {
-    "mtime": 1779520531.037176,
-    "hash": "fd2429c0af6a8030b9924def4d5aa009"
+    "mtime": 1780089413.8543525,
+    "hash": "515de61b2f3bc96683726d33ae6b78fe"
   },
   "C:\\dev\\proyecto_app\\lib\\home\\friends_screen.dart": {
     "mtime": 1779502830.1201277,
     "hash": "6cdba313523f6bd917344e4b327a6fd5"
   },
   "C:\\dev\\proyecto_app\\lib\\home\\groups_screen.dart": {
-    "mtime": 1779508746.8714263,
-    "hash": "02d19836277bd733edebeeba13cbbd43"
+    "mtime": 1780081348.3424914,
+    "hash": "e72b112d697e9ba2a938f66afe06bf97"
   },
   "C:\\dev\\proyecto_app\\lib\\home\\group_detail_screen.dart": {
-    "mtime": 1779504996.4514601,
-    "hash": "642dbce174912e7006d4d0ddf61c9cf9"
+    "mtime": 1780089734.0943398,
+    "hash": "3ed62334c80b6569c29f9214151fa752"
   },
   "C:\\dev\\proyecto_app\\lib\\home\\home_screen.dart": {
-    "mtime": 1779508200.8579645,
-    "hash": "212b1bec5245a88e77afc64ca48d7001"
+    "mtime": 1780090148.5631502,
+    "hash": "f0c42229728e1608ec37f2989be04367"
   },
   "C:\\dev\\proyecto_app\\lib\\home\\main_navigation.dart": {
-    "mtime": 1779515438.87787,
-    "hash": "8cb1a7b0f47a350293f9d1fd04d49f76"
+    "mtime": 1780080403.5623202,
+    "hash": "7542e912b7595a7bfa1b811a252f826a"
   },
   "C:\\dev\\proyecto_app\\lib\\home\\payments_screen.dart": {
-    "mtime": 1779508208.7207587,
-    "hash": "612d24dfb98574beb6f3038101faf309"
+    "mtime": 1780085218.6995516,
+    "hash": "0dcbdb38a6a8da1013b01bc282fbc262"
   },
   "C:\\dev\\proyecto_app\\lib\\home\\profile_screen.dart": {
     "mtime": 1779503348.0117266,
@@ -128,20 +128,24 @@
     "hash": "c5383ef9d01f502b1b79d8e5a87796fc"
   },
   "C:\\dev\\proyecto_app\\lib\\models\\group.dart": {
-    "mtime": 1779490883.3244264,
-    "hash": "87130ce6f7b5f35aeaa77283b18d9d73"
+    "mtime": 1780037303.6101174,
+    "hash": "f4fa425b3bf9a839cde742b727d1571e"
   },
   "C:\\dev\\proyecto_app\\lib\\models\\group_invitation.dart": {
     "mtime": 1779319541.3292556,
     "hash": "e46d6b1ce7c82a9eaeb6f08bc0c556d2"
   },
   "C:\\dev\\proyecto_app\\lib\\models\\payment_request.dart": {
-    "mtime": 1779387956.8360498,
-    "hash": "3784b260ccc27870ea5a600dee88e4ef"
+    "mtime": 1780037617.1326783,
+    "hash": "b6ccc22d492e822b829550136c328b9f"
+  },
+  "C:\\dev\\proyecto_app\\lib\\services\\email_service.dart": {
+    "mtime": 1780079633.0945947,
+    "hash": "bc2e6739ede97d6b9dc2e44474a4bfb5"
   },
   "C:\\dev\\proyecto_app\\lib\\services\\firestore_service.dart": {
-    "mtime": 1779508717.843755,
-    "hash": "83cc3ba865905ad7c792db86c9d98d5e"
+    "mtime": 1780086367.335315,
+    "hash": "18658eccd2fc33bf2fa65f2d716bfb53"
   },
   "C:\\dev\\proyecto_app\\lib\\theme\\app_theme.dart": {
     "mtime": 1778778125.8016539,
@@ -151,25 +155,41 @@
     "mtime": 1779473353.4164338,
     "hash": "9934667d398b302806ac1ae5c28c7b6c"
   },
+  "C:\\dev\\proyecto_app\\lib\\utils\\csv_export_io.dart": {
+    "mtime": 1780087898.493442,
+    "hash": "0d9b52a0787df137647dd4a40b4ae11e"
+  },
+  "C:\\dev\\proyecto_app\\lib\\utils\\csv_export_stub.dart": {
+    "mtime": 1780087888.0536544,
+    "hash": "b3ed3333c668a598d0db192c085942bc"
+  },
+  "C:\\dev\\proyecto_app\\lib\\utils\\csv_export_utility.dart": {
+    "mtime": 1780087904.2153244,
+    "hash": "9cde3d77554da532256b59a45008cf0d"
+  },
+  "C:\\dev\\proyecto_app\\lib\\utils\\csv_export_web.dart": {
+    "mtime": 1780087893.6775143,
+    "hash": "a045237860a9eda3a8d2b74da105ee16"
+  },
   "C:\\dev\\proyecto_app\\lib\\utils\\device_type.dart": {
     "mtime": 1779515423.8161695,
     "hash": "f4b3857b23e4690cb609abd3e229ebc1"
   },
   "C:\\dev\\proyecto_app\\lib\\utils\\print_io.dart": {
-    "mtime": 1779508895.2004583,
-    "hash": "3c93ad31905d1f36fd755aa147e7cedc"
+    "mtime": 1780088701.9384673,
+    "hash": "8154e18d086e43bf365f58ac2d3e4f98"
   },
   "C:\\dev\\proyecto_app\\lib\\utils\\print_stub.dart": {
-    "mtime": 1779508889.6798818,
-    "hash": "af68020dcdb49e6fb803a86d51f4cedb"
+    "mtime": 1780088709.5660272,
+    "hash": "b8de0f8105c41d1b6770bf283cca4384"
   },
   "C:\\dev\\proyecto_app\\lib\\utils\\print_utility.dart": {
     "mtime": 1779508909.1179163,
     "hash": "9c7d34e39f2555c07cf8f6b66b631804"
   },
   "C:\\dev\\proyecto_app\\lib\\utils\\print_web.dart": {
-    "mtime": 1779514034.1401849,
-    "hash": "3127c6d2605ab5dac6f0475e9d6b0c76"
+    "mtime": 1780088693.7758594,
+    "hash": "c29bce58fa13887608798b906388b65c"
   },
   "C:\\dev\\proyecto_app\\lib\\widgets\\google_sign_in_button.dart": {
     "mtime": 1778800685.7896702,
@@ -288,8 +308,8 @@
     "hash": "6c839a68de7c18e198ebc0be26813f6d"
   },
   "C:\\dev\\proyecto_app\\pubspec.yaml": {
-    "mtime": 1779493414.654037,
-    "hash": "7904783c8b5a10bdcffa20ae9e4ac4d0"
+    "mtime": 1780040388.979373,
+    "hash": "11626ac8f14ca21a668be3ba4fddc2e1"
   },
   "C:\\dev\\proyecto_app\\README.md": {
     "mtime": 1778202054.0,

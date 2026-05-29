@@ -30,6 +30,8 @@ class _PaymentsScreenState extends State<PaymentsScreen> with SingleTickerProvid
   Future<List<_GroupedPayment>>? _paymentsFuture;
   Future<List<PaymentRequest>>? _requestsFuture;
   late final Stream<List<PaymentRequest>> _pendingPaymentsStream;
+  late final Stream<List<PaymentRequest>> _requestsStream;
+  late final Stream<List<MapEntry<GroupModel, Expense>>> _historyStream;
 
   final Map<String, String> _groupIdToName = {};
   late final String _email;
@@ -42,6 +44,8 @@ class _PaymentsScreenState extends State<PaymentsScreen> with SingleTickerProvid
     _paymentsFuture = _initPayments();
     _requestsFuture = _initRequests();
     _pendingPaymentsStream = service.activePaymentRequestsForUser(_email);
+    _requestsStream = service.activePaymentRequestsForUser(_email);
+    _historyStream = service.userExpensesStream(_email);
   }
 
   Future<List<_GroupedPayment>> _initPayments() async {
@@ -164,8 +168,8 @@ class _PaymentsScreenState extends State<PaymentsScreen> with SingleTickerProvid
   // ────────────────────────── Historial ──────────────────────────
 
   Widget _buildHistoryTab(ColorScheme colorScheme, TextTheme textTheme) {
-    return FutureBuilder<List<_GroupedPayment>>(
-      future: _paymentsFuture,
+    return StreamBuilder<List<MapEntry<GroupModel, Expense>>>(
+      stream: _historyStream,
       builder: (context, snap) {
         if (snap.hasError) {
           return _errorState(colorScheme, '${tr('Error al cargar historial', 'Error loading history')}: ${snap.error}');
@@ -174,18 +178,13 @@ class _PaymentsScreenState extends State<PaymentsScreen> with SingleTickerProvid
           return const Center(child: CircularProgressIndicator());
         }
 
-        final grouped = snap.data ?? [];
-        final allPayments = grouped
-            .expand((g) => g.expenses.map((e) => MapEntry(g.group, e)))
-            .toList()
-          ..sort((a, b) => b.value.createdAt.compareTo(a.value.createdAt));
-
+        final allPayments = snap.data ?? [];
         if (allPayments.isEmpty) {
           return _emptyState(colorScheme, tr('Aún no tienes gastos registrados.', 'You don\'t have any registered expenses yet.'), Icons.receipt_outlined);
         }
 
         final total = allPayments.fold<double>(0, (s, e) => s + e.value.amount);
-        final groupCount = grouped.length;
+        final groupCount = allPayments.map((e) => e.key.id).toSet().length;
 
         return Column(
           children: [
@@ -330,8 +329,8 @@ class _PaymentsScreenState extends State<PaymentsScreen> with SingleTickerProvid
   // ────────────────────────── Solicitudes ──────────────────────────
 
   Widget _buildRequestsTab(ColorScheme colorScheme, TextTheme textTheme) {
-    return FutureBuilder<List<PaymentRequest>>(
-      future: _requestsFuture,
+    return StreamBuilder<List<PaymentRequest>>(
+      stream: _requestsStream,
       builder: (context, snap) {
         if (snap.hasError) {
           return _errorState(colorScheme, '${tr('Error al cargar solicitudes', 'Error loading requests')}: ${snap.error}');

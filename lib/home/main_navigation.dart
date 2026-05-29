@@ -42,7 +42,22 @@ class _MainNavigationState extends State<MainNavigation> {
     _groupsBadgeStream = _firestoreService.totalPendingGroupActionsStream(_currentEmail);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _checkOnboarding();
+      _checkPendingJoinLink();
     });
+  }
+
+  Future<void> _checkPendingJoinLink() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final code = prefs.getString('pending_join_code');
+      if (code != null && code.isNotEmpty) {
+        if (mounted) {
+          setState(() {
+            _currentIndex = 1; // Cambiar a la pestaña de Grupos
+          });
+        }
+      }
+    } catch (_) {}
   }
 
   Future<void> _checkOnboarding() async {

@@ -1,13 +1,18 @@
-# Graph Report - proyecto_app  (2026-05-23)
+# Graph Report - proyecto_app  (2026-05-29)
 
 ## Corpus Check
-- 70 files · ~128,884 words
+- 75 files · ~134,666 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 555 nodes · 938 edges · 43 communities (26 shown, 17 thin omitted)
+- 582 nodes · 969 edges · 44 communities (27 shown, 17 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 14 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
+
+## Graph Freshness
+- Built from commit: `f74d640a`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - [[_COMMUNITY_Community 0|Community 0]]
@@ -38,12 +43,12 @@
 - [[_COMMUNITY_Community 25|Community 25]]
 - [[_COMMUNITY_Community 26|Community 26]]
 - [[_COMMUNITY_Community 27|Community 27]]
-- [[_COMMUNITY_Community 37|Community 37]]
 - [[_COMMUNITY_Community 38|Community 38]]
 - [[_COMMUNITY_Community 39|Community 39]]
 - [[_COMMUNITY_Community 40|Community 40]]
 - [[_COMMUNITY_Community 41|Community 41]]
 - [[_COMMUNITY_Community 42|Community 42]]
+- [[_COMMUNITY_Community 43|Community 43]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `payments_screen.dart` - 39 edges
@@ -51,10 +56,10 @@
 3. `../services/firestore_service.dart` - 30 edges
 4. `package:firebase_auth/firebase_auth.dart` - 26 edges
 5. `settings_screen.dart` - 22 edges
-6. `package:cloud_firestore/cloud_firestore.dart` - 19 edges
+6. `package:cloud_firestore/cloud_firestore.dart` - 21 edges
 7. `../main.dart` - 18 edges
-8. `activity_screen.dart` - 16 edges
-9. `dart:convert` - 15 edges
+8. `dart:convert` - 17 edges
+9. `activity_screen.dart` - 16 edges
 10. `build` - 14 edges
 
 ## Surprising Connections (you probably didn't know these)
@@ -69,23 +74,23 @@
 - `Analysis Options` --references--> `Flutter Lints Package`  [EXTRACTED]
   analysis_options.yaml → pubspec.yaml
 
-## Communities (43 total, 17 thin omitted)
+## Communities (44 total, 17 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.06
-Nodes (50): AlertDialog, build, Card, Center, CheckboxListTile, Column, Container, dispose (+42 more)
+Cohesion: 0.05
+Nodes (52): AlertDialog, Align, _BalanceCard, BoxDecoration, build, Card, _categoryIcon, Center (+44 more)
 
 ### Community 1 - "Community 1"
+Cohesion: 0.06
+Nodes (51): AlertDialog, build, Card, Center, CheckboxListTile, CircularProgressIndicator, Column, Container (+43 more)
+
+### Community 2 - "Community 2"
 Cohesion: 0.05
 Nodes (45): auth_service.dart, AuthService, Exception, build, dispose, ForgotPasswordScreen, _ForgotPasswordScreenState, Scaffold (+37 more)
 
-### Community 2 - "Community 2"
-Cohesion: 0.07
-Nodes (41): activity_screen.dart, _ActivityItem, ActivityScreen, _ActivityScreenState, build, Center, Column, _emptyState (+33 more)
-
 ### Community 3 - "Community 3"
 Cohesion: 0.06
-Nodes (43): AlertDialog, Align, _BalanceCard, BoxDecoration, build, _categoryIcon, Center, Column (+35 more)
+Nodes (42): activity_screen.dart, _ActivityItem, ActivityScreen, _ActivityScreenState, build, Center, Column, _emptyState (+34 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.07
@@ -93,31 +98,31 @@ Nodes (41): DefaultFirebaseOptions, UnsupportedError, Text, AlertDialog, build, 
 
 ### Community 5 - "Community 5"
 Cohesion: 0.05
-Nodes (41): AdminDashboardScreen, _AdminDashboardScreenState, build, _buildAnalyticsTab, _buildBarChart, _buildChartCard, _buildGroupsTab, _buildLegendItem (+33 more)
+Nodes (43): AdminDashboardScreen, _AdminDashboardScreenState, build, _buildAnalyticsTab, _buildBarChart, _buildChartCard, _buildGroupsTab, _buildLegendItem (+35 more)
 
 ### Community 6 - "Community 6"
 Cohesion: 0.08
-Nodes (31): AlertDialog, _areFriendListsEqual, build, Card, Center, Column, Container, dispose (+23 more)
+Nodes (32): AlertDialog, _areFriendListsEqual, build, Card, Center, Column, Container, dispose (+24 more)
 
 ### Community 7 - "Community 7"
 Cohesion: 0.09
 Nodes (32): build, _buildHistoryTab, _buildRequestsTab, Card, _categoryIcon, Center, Column, Container (+24 more)
 
 ### Community 8 - "Community 8"
+Cohesion: 0.07
+Nodes (27): ../auth/auth_service.dart, build, _buildProfileListTile, Card, initState, ProfileScreen, _ProfileScreenState, Scaffold (+19 more)
+
+### Community 9 - "Community 9"
 Cohesion: 0.06
 Nodes (29): AdminDashboardScreen, Badge, build, _buildNavItem, FriendsScreen, GestureDetector, GroupsScreen, Icon (+21 more)
 
-### Community 9 - "Community 9"
+### Community 10 - "Community 10"
 Cohesion: 0.12
 Nodes (19): RegisterPlugins(), FlutterWindow(), OnCreate(), Create(), Destroy(), EnableFullDpiSupportIfAvailable(), GetClientArea(), GetThisFromHandle() (+11 more)
 
-### Community 10 - "Community 10"
+### Community 11 - "Community 11"
 Cohesion: 0.11
 Nodes (17): Analysis Options, Cloud Firestore, Design System & Login UI, Firebase Auth, Firebase Core, RegisterGeneratedPlugins(), Flutter Launcher Icons, Flutter Lints Package (+9 more)
-
-### Community 11 - "Community 11"
-Cohesion: 0.1
-Nodes (20): ../auth/auth_service.dart, build, _buildProfileListTile, Card, initState, ProfileScreen, _ProfileScreenState, Scaffold (+12 more)
 
 ### Community 12 - "Community 12"
 Cohesion: 0.15
@@ -140,24 +145,24 @@ Cohesion: 0.47
 Nodes (4): wWinMain(), CreateAndAttachConsole(), GetCommandLineArguments(), Utf8FromUtf16()
 
 ## Knowledge Gaps
-- **272 isolated node(s):** `MainActivity`, `Intercept NOTIFY_DEBUGGER_ABOUT_RX_PAGES and touch the pages.`, `DefaultFirebaseOptions`, `UnsupportedError`, `main` (+267 more)
+- **293 isolated node(s):** `MainActivity`, `Intercept NOTIFY_DEBUGGER_ABOUT_RX_PAGES and touch the pages.`, `DefaultFirebaseOptions`, `UnsupportedError`, `main` (+288 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **17 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `package:flutter/material.dart` connect `Community 1` to `Community 0`, `Community 2`, `Community 3`, `Community 4`, `Community 5`, `Community 6`, `Community 7`, `Community 8`, `Community 11`, `Community 12`, `Community 14`?**
-  _High betweenness centrality (0.242) - this node is a cross-community bridge._
+- **Why does `package:flutter/material.dart` connect `Community 2` to `Community 0`, `Community 1`, `Community 3`, `Community 4`, `Community 5`, `Community 6`, `Community 7`, `Community 8`, `Community 9`, `Community 12`, `Community 14`?**
+  _High betweenness centrality (0.223) - this node is a cross-community bridge._
 - **Why does `main()` connect `Community 12` to `Community 4`?**
-  _High betweenness centrality (0.187) - this node is a cross-community bridge._
-- **Why does `../main.dart` connect `Community 4` to `Community 1`, `Community 2`, `Community 12`?**
-  _High betweenness centrality (0.159) - this node is a cross-community bridge._
+  _High betweenness centrality (0.180) - this node is a cross-community bridge._
+- **Why does `../main.dart` connect `Community 4` to `Community 2`, `Community 3`, `Community 12`?**
+  _High betweenness centrality (0.155) - this node is a cross-community bridge._
 - **What connects `MainActivity`, `Intercept NOTIFY_DEBUGGER_ABOUT_RX_PAGES and touch the pages.`, `DefaultFirebaseOptions` to the rest of the system?**
-  _272 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _293 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.06 - nodes in this community are weakly interconnected._
-- **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.05 - nodes in this community are weakly interconnected._
+- **Should `Community 1` be split into smaller, more focused modules?**
+  _Cohesion score 0.06 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
-  _Cohesion score 0.07 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05 - nodes in this community are weakly interconnected._

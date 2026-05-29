@@ -8,6 +8,7 @@ import '../models/friend_request.dart';
 import '../models/group.dart';
 import '../models/group_invitation.dart';
 import '../models/payment_request.dart';
+import 'email_service.dart';
 
 class FirestoreService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -219,6 +220,9 @@ class FirestoreService {
     required String name,
     required List<String> members,
     required String createdBy,
+    int? maxMembers,
+    double? initialBudget,
+    DateTime? activeUntil,
   }) async {
     // Solo el creador entra directo al grupo inicialmente.
     final groupRef = await _firestore.collection('groups').add({
@@ -227,6 +231,9 @@ class FirestoreService {
       'createdBy': createdBy,
       'admins': [createdBy],
       'createdAt': FieldValue.serverTimestamp(),
+      'maxMembers': maxMembers,
+      'initialBudget': initialBudget,
+      'activeUntil': activeUntil,
     });
 
     final code = GroupModel.buildInviteCode(groupRef.id);
@@ -276,6 +283,10 @@ class FirestoreService {
       throw Exception('Ya perteneces a este grupo.');
     }
 
+    if (group.maxMembers != null && group.members.length >= group.maxMembers!) {
+      throw Exception('El grupo ha alcanzado su capacidad máxima de miembros.');
+    }
+
     await sendJoinRequest(
       groupId: group.id,
       userEmail: userEmail,
@@ -308,9 +319,16 @@ class FirestoreService {
     if (from == to) throw Exception('No puedes invitarte a ti mismo.');
 
     // Verificar si ya está en el grupo
+    int memberCount = 0;
+    double? initialBudget;
     final groupDoc = await _firestore.collection('groups').doc(groupId).get();
+    String groupCode = '';
     if (groupDoc.exists) {
-      final members = List<String>.from(groupDoc.data()?['members'] ?? []);
+      final data = groupDoc.data() ?? {};
+      groupCode = data['code'] as String? ?? '';
+      final members = List<String>.from(data['members'] ?? []);
+      memberCount = members.length;
+      initialBudget = (data['initialBudget'] as num?)?.toDouble();
       if (members.any((m) => m.trim().toLowerCase() == to.trim().toLowerCase())) {
         throw Exception('El usuario ya pertenece al grupo.');
       }
@@ -337,6 +355,41 @@ class FirestoreService {
       'status': 'pending',
       'groupName': groupName,
       'createdAt': FieldValue.serverTimestamp(),
+    });
+
+    // Obtener detalles de gastos para agregarlos a la invitación
+    final expensesSnap = await _firestore
+        .collection('groups')
+        .doc(groupId)
+        .collection('expenses')
+        .get();
+    final expenseCount = expensesSnap.docs.length;
+    final totalExpenses = expensesSnap.docs.fold<double>(
+      0.0,
+      (sum, doc) => sum + (doc.data()['amount'] as num? ?? 0.0).toDouble(),
+    );
+
+    // Enviar correo de invitación de forma asíncrona
+    final fromName = from.split('@')[0];
+    final String webAppBaseUrl;
+    if (kIsWeb) {
+      webAppBaseUrl = Uri.base.replace(queryParameters: {}, fragment: '').toString();
+    } else {
+      webAppBaseUrl = 'https://smartbudget-88efb.web.app';
+    }
+    
+    EmailService.sendGroupInvitation(
+      toEmail: to,
+      groupName: groupName,
+      fromName: fromName,
+      groupCode: groupCode,
+      webAppBaseUrl: webAppBaseUrl,
+      memberCount: memberCount,
+      initialBudget: initialBudget,
+      expenseCount: expenseCount,
+      totalExpenses: totalExpenses,
+    ).catchError((e) {
+      debugPrint('Error al enviar correo de invitación: $e');
     });
   }
 
@@ -378,16 +431,27 @@ class FirestoreService {
     required String groupId,
     required String targetEmail,
   }) async {
-    await _firestore.collection('group_invitations').doc(invitationId).update({
-      'status': accept ? 'accepted' : 'rejected',
-      'resolvedAt': FieldValue.serverTimestamp(),
-    });
-
     if (accept) {
+      final doc = await _firestore.collection('groups').doc(groupId).get();
+      if (!doc.exists) {
+        throw Exception('El grupo no existe.');
+      }
+      final data = doc.data() ?? {};
+      final members = List<String>.from(data['members'] ?? []);
+      final maxMembers = data['maxMembers'] as int?;
+      if (maxMembers != null && members.length >= maxMembers) {
+        throw Exception('El grupo ha alcanzado su capacidad máxima de miembros.');
+      }
+
       await _firestore.collection('groups').doc(groupId).update({
         'members': FieldValue.arrayUnion([targetEmail]),
       });
     }
+
+    await _firestore.collection('group_invitations').doc(invitationId).update({
+      'status': accept ? 'accepted' : 'rejected',
+      'resolvedAt': FieldValue.serverTimestamp(),
+    });
   }
 
   Stream<List<GroupInvitation>> pendingGroupInvitationsStream(
@@ -580,7 +644,7 @@ class FirestoreService {
     final cleanPaidTo = paidTo?.trim().toLowerCase();
     final cleanInvolvedMembers = involvedMembers.map((m) => m.trim().toLowerCase()).toList();
 
-    await _firestore
+    final docRef = await _firestore
         .collection('groups')
         .doc(groupId)
         .collection('expenses')
@@ -629,6 +693,7 @@ class FirestoreService {
                       'status': 'pendiente_boleta',
                       'createdAt': FieldValue.serverTimestamp(),
                       'resolvedAt': null,
+                      'expenseId': docRef.id,
                     });
 
                 String bodyText = '$fromName añadió el gasto "$title" en "$groupName". Tu parte es Q${share.toStringAsFixed(2)}.';
@@ -672,16 +737,64 @@ class FirestoreService {
           'amount': amount,
           'category': category,
         });
+
+    final query = await _firestore
+        .collection('groups')
+        .doc(groupId)
+        .collection('payment_requests')
+        .where('expenseId', isEqualTo: expenseId)
+        .get();
+
+    // Filtrar en memoria para evitar errores de índice faltante en Firestore
+    final docsToUpdate = query.docs.where((doc) {
+      final status = doc.data()['status'] as String?;
+      return status == 'pendiente' || status == 'pendiente_boleta';
+    }).toList();
+
+    final expenseDoc = await _firestore
+        .collection('groups')
+        .doc(groupId)
+        .collection('expenses')
+        .doc(expenseId)
+        .get();
+
+    if (expenseDoc.exists) {
+      final expenseData = expenseDoc.data() ?? {};
+      final involvedMembers = List<String>.from(expenseData['involvedMembers'] ?? []);
+      
+      final groupDoc = await _firestore.collection('groups').doc(groupId).get();
+      final groupMembers = groupDoc.exists
+          ? List<String>.from(groupDoc.data()?['members'] ?? [])
+          : <String>[];
+
+      final targets = involvedMembers.isNotEmpty ? involvedMembers : groupMembers;
+      if (targets.isNotEmpty) {
+        final share = amount / targets.length;
+        for (final doc in docsToUpdate) {
+          await doc.reference.update({
+            'amount': share,
+            'reference': 'Gasto: ${title.trim()}',
+            'rubro': category,
+          });
+        }
+      }
+    }
   }
 
   Future<void> updateGroup({
     required String groupId,
     required String name,
     String? imageUrl,
+    int? maxMembers,
+    double? initialBudget,
+    DateTime? activeUntil,
   }) async {
     await _firestore.collection('groups').doc(groupId).update({
       'name': name.trim(),
       'imageUrl': imageUrl,
+      'maxMembers': maxMembers,
+      'initialBudget': initialBudget,
+      'activeUntil': activeUntil,
     });
   }
 
@@ -715,12 +828,59 @@ class FirestoreService {
     required String groupId,
     required String expenseId,
   }) async {
+    final expenseDoc = await _firestore
+        .collection('groups')
+        .doc(groupId)
+        .collection('expenses')
+        .doc(expenseId)
+        .get();
+
+    String expenseTitle = 'Gasto eliminado';
+    String expenseCategory = 'Otros';
+    if (expenseDoc.exists) {
+      final expenseData = expenseDoc.data() ?? {};
+      expenseTitle = expenseData['title'] as String? ?? 'Gasto eliminado';
+      expenseCategory = expenseData['category'] as String? ?? 'Otros';
+    }
+
     await _firestore
         .collection('groups')
         .doc(groupId)
         .collection('expenses')
         .doc(expenseId)
         .delete();
+
+    final query = await _firestore
+        .collection('groups')
+        .doc(groupId)
+        .collection('payment_requests')
+        .where('expenseId', isEqualTo: expenseId)
+        .get();
+
+    for (final doc in query.docs) {
+      final status = doc.data()['status'] as String?;
+      if (status == 'pendiente' || status == 'pendiente_boleta') {
+        await doc.reference.delete();
+      } else if (status == 'confirmado') {
+        final fromEmail = doc.data()['fromEmail'] as String?;
+        final toEmail = doc.data()['toEmail'] as String?;
+        final amount = (doc.data()['amount'] as num? ?? 0.0).toDouble();
+
+        if (fromEmail != null && toEmail != null && amount > 0) {
+          await createExpense(
+            groupId: groupId,
+            title: 'Devolución: Gasto eliminado ($expenseTitle)',
+            amount: amount,
+            paidBy: toEmail,
+            involvedMembers: [fromEmail],
+            type: 'payment',
+            paidTo: fromEmail,
+            category: expenseCategory,
+          );
+        }
+        await doc.reference.update({'status': 'reembolsado'});
+      }
+    }
   }
 
   // ─── Comments ──────────────────────────────────────────────────────────────
@@ -1011,6 +1171,81 @@ class FirestoreService {
               .map((doc) => PaymentRequest.fromMap(doc.id, doc.data()))
               .toList(),
         );
+  }
+
+  Stream<List<MapEntry<GroupModel, Expense>>> userExpensesStream(String userEmail) {
+    final email = userEmail.trim().toLowerCase();
+    final controller = StreamController<List<MapEntry<GroupModel, Expense>>>.broadcast();
+
+    StreamSubscription? groupsSubscription;
+    final Map<String, StreamSubscription> groupSubscriptions = {};
+    final Map<String, List<Expense>> groupExpenses = {};
+    final Map<String, GroupModel> groupModels = {};
+
+    void emitCombined() {
+      if (controller.isClosed) return;
+      final allExpenses = <MapEntry<GroupModel, Expense>>[];
+      for (final entry in groupExpenses.entries) {
+        final groupId = entry.key;
+        final expenses = entry.value;
+        final group = groupModels[groupId];
+        if (group != null) {
+          for (final exp in expenses) {
+            allExpenses.add(MapEntry(group, exp));
+          }
+        }
+      }
+      
+      final mine = allExpenses.where((entry) {
+        final e = entry.value;
+        return e.paidBy.trim().toLowerCase() == email ||
+            (e.type == 'payment' && e.paidTo?.trim().toLowerCase() == email);
+      }).toList();
+      
+      mine.sort((a, b) => b.value.createdAt.compareTo(a.value.createdAt));
+      controller.add(mine);
+    }
+
+    controller.onListen = () {
+      groupsSubscription = groupsForUser(email).listen((groups) {
+        final groupIds = groups.map((g) => g.id).toSet();
+        final removedGroupIds = groupSubscriptions.keys.where((id) => !groupIds.contains(id)).toList();
+        for (final id in removedGroupIds) {
+          groupSubscriptions.remove(id)?.cancel();
+          groupExpenses.remove(id);
+          groupModels.remove(id);
+        }
+
+        for (final group in groups) {
+          groupModels[group.id] = group;
+          if (!groupSubscriptions.containsKey(group.id)) {
+            final groupStream = expensesForGroup(group.id);
+
+            groupSubscriptions[group.id] = groupStream.listen((expenses) {
+              groupExpenses[group.id] = expenses;
+              emitCombined();
+            }, onError: (err) {
+              debugPrint('Error loading expenses for group ${group.id}: $err');
+            });
+          }
+        }
+        if (groups.isEmpty) {
+          emitCombined();
+        }
+      }, onError: controller.addError);
+    };
+
+    controller.onCancel = () {
+      groupsSubscription?.cancel();
+      for (final sub in groupSubscriptions.values) {
+        sub.cancel();
+      }
+      groupSubscriptions.clear();
+      groupExpenses.clear();
+      groupModels.clear();
+    };
+
+    return controller.stream;
   }
 
   Stream<List<PaymentRequest>> activePaymentRequestsForUser(String userEmail) {

@@ -46,3 +46,9 @@ void printTabPdf({required String title, required List<List<String>> headersAndD
   final url = html.Url.createObjectUrlFromBlob(blob);
   html.window.open(url, '_blank');
 }
+
+void printHtmlReport({required String title, required String htmlContent}) {
+  final blob = html.Blob([htmlContent], 'text/html;charset=utf-8');
+  final url = html.Url.createObjectUrlFromBlob(blob);
+  html.window.open(url, '_blank');
+}

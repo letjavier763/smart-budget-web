@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:proyecto_app/models/group.dart';
 import 'package:proyecto_app/services/firestore_service.dart';
 import 'package:proyecto_app/theme/translations.dart';
@@ -50,80 +51,323 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen>
   }
 
   // ─── PDF EXPORT ────────────────────────────────────────────────────────────
-  void _exportCurrentTabPdf() {
-    // Read index directly at call time — no setState tracking needed.
-    switch (_tabController.index) {
-      case 0:
-        _exportStatisticsPdf(_latestGroups);
-        break;
-      case 1:
-        _exportUsersPdf(_latestUsers);
-        break;
-      case 2:
-        _exportGroupsPdf(_latestGroups);
-        break;
-    }
-  }
+  void _showAdminExportOptionsDialog() {
+    bool includeStats = true;
+    bool includeUsers = true;
+    bool includeGroups = true;
+    bool includeBudgets = true;
+    bool includeSecurity = true;
+    bool includeRanking = true;
 
-  void _exportUsersPdf(List<Map<String, dynamic>> users) {
-    final List<List<String>> data = [
-      [tr('Nombre', 'Name'), tr('Correo Electrónico', 'Email'), tr('Rol', 'Role')],
-    ];
-    for (var u in users) {
-      final email = u['email'] as String? ?? '';
-      final name = u['displayName'] as String? ?? email.split('@')[0];
-      final role = u['role'] as String? ?? 'user';
-      data.add([name, email, role.toUpperCase()]);
-    }
-    printTabPdf(
-      title: tr('Reporte de Usuarios del Sistema', 'System Users Report'),
-      headersAndData: data,
+    showDialog(
+      context: context,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setState) => AlertDialog(
+          title: Text(tr('Exportar Reporte de Administración', 'Export Administration Report')),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  tr(
+                    'Selecciona las secciones que deseas incluir en el reporte de administración central:',
+                    'Select the sections you want to include in the central administration report:',
+                  ),
+                  style: const TextStyle(fontSize: 14),
+                ),
+                const SizedBox(height: 12),
+                CheckboxListTile(
+                  value: includeStats,
+                  title: Text(tr('Estadísticas Generales', 'General Statistics')),
+                  subtitle: Text(tr('Métricas de grupos, miembros totales y distribución.', 'Group metrics, total members, and distribution.')),
+                  onChanged: (val) {
+                    if (val != null) setState(() => includeStats = val);
+                  },
+                ),
+                CheckboxListTile(
+                  value: includeUsers,
+                  title: Text(tr('Directorio de Usuarios', 'Users Directory')),
+                  subtitle: Text(tr('Listado completo de usuarios registrados y sus roles.', 'Complete list of registered users and their roles.')),
+                  onChanged: (val) {
+                    if (val != null) setState(() => includeUsers = val);
+                  },
+                ),
+                CheckboxListTile(
+                  value: includeGroups,
+                  title: Text(tr('Registro de Grupos', 'Groups Directory')),
+                  subtitle: Text(tr('Listado completo de grupos, códigos de acceso y creadores.', 'Complete list of groups, access codes, and creators.')),
+                  onChanged: (val) {
+                    if (val != null) setState(() => includeGroups = val);
+                  },
+                ),
+                CheckboxListTile(
+                  value: includeBudgets,
+                  title: Text(tr('Auditoría de Presupuestos', 'Budgets Audit')),
+                  subtitle: Text(tr('Presupuesto vs. total gastado por cada grupo del sistema.', 'Budget vs. total spent for each group in the system.')),
+                  onChanged: (val) {
+                    if (val != null) setState(() => includeBudgets = val);
+                  },
+                ),
+                CheckboxListTile(
+                  value: includeSecurity,
+                  title: Text(tr('Resumen de Seguridad', 'Security Summary')),
+                  subtitle: Text(tr('Detalle de administradores activos y balance de permisos.', 'Detail of active administrators and permissions balance.')),
+                  onChanged: (val) {
+                    if (val != null) setState(() => includeSecurity = val);
+                  },
+                ),
+                CheckboxListTile(
+                  value: includeRanking,
+                  title: Text(tr('Ranking de Creadores', 'Creators Ranking')),
+                  subtitle: Text(tr('Clasificación de usuarios según cantidad de grupos creados.', 'Ranking of users based on the number of groups created.')),
+                  onChanged: (val) {
+                    if (val != null) setState(() => includeRanking = val);
+                  },
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: Text(tr('Cancelar', 'Cancel')),
+            ),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.picture_as_pdf),
+              label: Text(tr('Generar PDF', 'Generate PDF')),
+              onPressed: () async {
+                Navigator.pop(ctx);
+                
+                // Show a loading indicator dialog since we will query budgets
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (loadingCtx) => const Center(
+                    child: Card(
+                      child: Padding(
+                        padding: EdgeInsets.all(24.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            CircularProgressIndicator(),
+                            SizedBox(height: 16),
+                            Text('Generando Reporte...'),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+
+                await _generateAdminHtmlReport(
+                  includeStats: includeStats,
+                  includeUsers: includeUsers,
+                  includeGroups: includeGroups,
+                  includeBudgets: includeBudgets,
+                  includeSecurity: includeSecurity,
+                  includeRanking: includeRanking,
+                );
+
+                if (mounted) {
+                  Navigator.pop(context); // Close loading dialog
+                }
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 
-  void _exportGroupsPdf(List<GroupModel> groups) {
-    final List<List<String>> data = [
-      [
-        tr('Nombre de Grupo', 'Group Name'),
-        tr('Código', 'Code'),
-        tr('Miembros', 'Members'),
-        tr('Creado por', 'Created By'),
-      ],
-    ];
-    for (var g in groups) {
-      data.add([g.name, g.code, '${g.members.length}', g.createdBy.split('@')[0]]);
-    }
-    printTabPdf(
-      title: tr('Reporte de Grupos del Sistema', 'System Groups Report'),
-      headersAndData: data,
-    );
-  }
+  Future<void> _generateAdminHtmlReport({
+    required bool includeStats,
+    required bool includeUsers,
+    required bool includeGroups,
+    required bool includeBudgets,
+    required bool includeSecurity,
+    required bool includeRanking,
+  }) async {
+    final buffer = StringBuffer();
+    final timeStr = DateTime.now().toLocal().toString().split('.')[0];
 
-  void _exportStatisticsPdf(List<GroupModel> groups) {
-    final int totalMembers = groups.fold<int>(0, (sum, g) => sum + g.members.length);
-    final double avgMembers = groups.isNotEmpty ? totalMembers / groups.length : 0.0;
-    int smallCount = 0, mediumCount = 0, largeCount = 0;
-    for (var g in groups) {
-      if (g.members.length <= 2) {
-        smallCount++;
-      } else if (g.members.length <= 5) {
-        mediumCount++;
-      } else {
-        largeCount++;
+    buffer.write('<html><head><meta charset="UTF-8"><title>Reporte de Administración Central</title>');
+    buffer.write('<style>');
+    buffer.write('body { font-family: system-ui, -apple-system, sans-serif; padding: 40px; color: #1e293b; background-color: #ffffff; line-height: 1.5; }');
+    buffer.write('.header { border-bottom: 3px solid #003289; padding-bottom: 20px; margin-bottom: 30px; }');
+    buffer.write('h1 { color: #003289; margin: 0 0 10px 0; font-size: 28px; font-weight: 800; }');
+    buffer.write('h2 { color: #0f172a; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 6px; margin: 30px 0 15px 0; font-size: 20px; }');
+    buffer.write('.meta { color: #64748b; font-size: 14px; margin-bottom: 5px; }');
+    buffer.write('table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 25px; }');
+    buffer.write('th, td { border: 1px solid #e2e8f0; padding: 12px 16px; text-align: left; font-size: 14px; }');
+    buffer.write('th { background-color: #003289; color: #ffffff; font-weight: 600; }');
+    buffer.write('tr:nth-child(even) { background-color: #f8fafc; }');
+    buffer.write('.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 25px; }');
+    buffer.write('.card { border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; background-color: #f8fafc; }');
+    buffer.write('.card-title { font-weight: 600; color: #475569; font-size: 12px; text-transform: uppercase; margin-bottom: 6px; }');
+    buffer.write('.card-value { font-size: 20px; font-weight: 700; color: #003289; }');
+    buffer.write('.badge { display: inline-block; padding: 2px 8px; font-size: 12px; font-weight: 600; border-radius: 4px; }');
+    buffer.write('.badge-admin { background-color: #dcfce7; color: #15803d; }');
+    buffer.write('.badge-user { background-color: #f1f5f9; color: #475569; }');
+    buffer.write('.badge-danger { background-color: #fee2e2; color: #b91c1c; }');
+    buffer.write('.badge-success { background-color: #dcfce7; color: #15803d; }');
+    buffer.write('</style></head><body>');
+
+    // Header
+    buffer.write('<div class="header">');
+    buffer.write('<h1>SmartBudget - Reporte de Administración Central</h1>');
+    buffer.write('<div class="meta"><strong>Generado por:</strong> $_currentEmail</div>');
+    buffer.write('<div class="meta"><strong>Fecha de reporte:</strong> $timeStr</div>');
+    buffer.write('</div>');
+
+    // Section 1: Stats
+    if (includeStats && _latestGroups.isNotEmpty) {
+      final int totalMembers = _latestGroups.fold<int>(0, (sum, g) => sum + g.members.length);
+      final double avgMembers = _latestGroups.isNotEmpty ? totalMembers / _latestGroups.length : 0.0;
+      int smallCount = 0, mediumCount = 0, largeCount = 0;
+      for (var g in _latestGroups) {
+        if (g.members.length <= 2) {
+          smallCount++;
+        } else if (g.members.length <= 5) {
+          mediumCount++;
+        } else {
+          largeCount++;
+        }
       }
+
+      buffer.write('<h2>Estadísticas Generales</h2>');
+      buffer.write('<div class="grid">');
+      buffer.write('<div class="card"><div class="card-title">Total de Grupos</div><div class="card-value">${_latestGroups.length}</div></div>');
+      buffer.write('<div class="card"><div class="card-title">Total de Miembros</div><div class="card-value">$totalMembers</div></div>');
+      buffer.write('<div class="card"><div class="card-title">Promedio Miembros / Grupo</div><div class="card-value">${avgMembers.toStringAsFixed(1)}</div></div>');
+      buffer.write('</div>');
+
+      buffer.write('<h3>Distribución del Tamaño de Grupos</h3>');
+      buffer.write('<table><thead><tr><th>Tamaño del Grupo</th><th>Cantidad</th></tr></thead><tbody>');
+      buffer.write('<tr><td>Pequeños (1-2 miembros)</td><td><strong>$smallCount</strong></td></tr>');
+      buffer.write('<tr><td>Medianos (3-5 miembros)</td><td><strong>$mediumCount</strong></td></tr>');
+      buffer.write('<tr><td>Grandes (6+ miembros)</td><td><strong>$largeCount</strong></td></tr>');
+      buffer.write('</tbody></table>');
     }
-    final List<List<String>> data = [
-      [tr('Métrica', 'Metric'), tr('Valor', 'Value')],
-      [tr('Total de Grupos', 'Total Groups'), '${groups.length}'],
-      [tr('Total de Miembros', 'Total Members'), '$totalMembers'],
-      [tr('Promedio Miembros / Grupo', 'Avg Members / Group'), avgMembers.toStringAsFixed(1)],
-      [tr('Grupos Pequeños (1-2)', 'Small Groups (1-2)'), '$smallCount'],
-      [tr('Grupos Medianos (3-5)', 'Medium Groups (3-5)'), '$mediumCount'],
-      [tr('Grupos Grandes (6+)', 'Large Groups (6+)'), '$largeCount'],
-    ];
-    printTabPdf(
-      title: tr('Reporte de Estadísticas Generales', 'General Statistics Report'),
-      headersAndData: data,
+
+    // Section 2: Users List
+    if (includeUsers && _latestUsers.isNotEmpty) {
+      buffer.write('<h2>Directorio de Usuarios</h2>');
+      buffer.write('<table><thead><tr><th>Nombre</th><th>Correo Electrónico</th><th>Rol</th></tr></thead><tbody>');
+      for (var u in _latestUsers) {
+        final email = u['email'] as String? ?? '';
+        final name = u['displayName'] as String? ?? email.split('@')[0];
+        final role = u['role'] as String? ?? 'user';
+        final badgeClass = role.toLowerCase() == 'admin' ? 'badge badge-admin' : 'badge badge-user';
+        buffer.write('<tr><td><strong>$name</strong></td><td>$email</td><td><span class="$badgeClass">${role.toUpperCase()}</span></td></tr>');
+      }
+      buffer.write('</tbody></table>');
+    }
+
+    // Section 3: Security & Roles Summary
+    if (includeSecurity && _latestUsers.isNotEmpty) {
+      final adminsCount = _latestUsers.where((u) => (u['role'] as String? ?? '').toLowerCase() == 'admin').length;
+      final usersCount = _latestUsers.length - adminsCount;
+
+      buffer.write('<h2>Resumen de Seguridad y Roles</h2>');
+      buffer.write('<div class="grid">');
+      buffer.write('<div class="card"><div class="card-title">Administradores del Sistema</div><div class="card-value">$adminsCount</div></div>');
+      buffer.write('<div class="card"><div class="card-title">Usuarios Regulares</div><div class="card-value">$usersCount</div></div>');
+      buffer.write('</div>');
+
+      buffer.write('<h3>Administradores Activos con Acceso Total</h3>');
+      buffer.write('<table><thead><tr><th>Nombre</th><th>Correo Electrónico</th><th>Rol de Acceso</th></tr></thead><tbody>');
+      for (var u in _latestUsers) {
+        final role = u['role'] as String? ?? 'user';
+        if (role.toLowerCase() == 'admin') {
+          final email = u['email'] as String? ?? '';
+          final name = u['displayName'] as String? ?? email.split('@')[0];
+          buffer.write('<tr><td><strong>$name</strong></td><td>$email</td><td><span class="badge badge-admin">SUPER ADMIN</span></td></tr>');
+        }
+      }
+      buffer.write('</tbody></table>');
+    }
+
+    // Section 4: Ranking of Creators
+    if (includeRanking && _latestGroups.isNotEmpty) {
+      final Map<String, int> creatorCounts = {};
+      for (final g in _latestGroups) {
+        final creator = g.createdBy.trim().toLowerCase();
+        creatorCounts[creator] = (creatorCounts[creator] ?? 0) + 1;
+      }
+
+      final sortedCreators = creatorCounts.entries.toList()
+        ..sort((a, b) => b.value.compareTo(a.value));
+
+      buffer.write('<h2>Ranking de Creadores de Grupos</h2>');
+      buffer.write('<p>Usuarios que han configurado y creado más espacios de presupuesto colaborativo en el sistema:</p>');
+      buffer.write('<table><thead><tr><th>Posición</th><th>Creador (Correo)</th><th>Grupos Creados</th></tr></thead><tbody>');
+      int rank = 1;
+      for (final entry in sortedCreators) {
+        buffer.write('<tr><td><strong>#$rank</strong></td><td>${entry.key}</td><td><strong>${entry.value} grupo(s)</strong></td></tr>');
+        rank++;
+      }
+      buffer.write('</tbody></table>');
+    }
+
+    // Section 5: Budgets Audit (Loads dynamically)
+    if (includeBudgets && _latestGroups.isNotEmpty) {
+      buffer.write('<h2>Auditoría de Presupuestos de Grupos</h2>');
+      buffer.write('<p>Comparación en tiempo real del presupuesto inicial asignado frente al gasto total acumulado en cada grupo:</p>');
+      buffer.write('<table><thead><tr><th>Nombre de Grupo</th><th>Presupuesto Inicial</th><th>Gasto Acumulado</th><th>Balance Restante</th><th>Estado</th></tr></thead><tbody>');
+
+      for (final g in _latestGroups) {
+        double budget = g.initialBudget ?? 0.0;
+        double spent = 0.0;
+
+        try {
+          final snap = await FirebaseFirestore.instance
+              .collection('groups')
+              .doc(g.id)
+              .collection('expenses')
+              .get();
+          for (final doc in snap.docs) {
+            final data = doc.data();
+            if (data['type'] != 'payment') {
+              spent += (data['amount'] as num?)?.toDouble() ?? 0.0;
+            }
+          }
+        } catch (e) {
+          debugPrint('Error fetching expenses for budget audit: $e');
+        }
+
+        final remaining = budget - spent;
+        final statusLabel = remaining < 0 ? 'Excedido' : 'Bajo control';
+        final statusBadge = remaining < 0 ? 'badge badge-danger' : 'badge badge-success';
+
+        buffer.write('<tr>');
+        buffer.write('<td><strong>${g.name}</strong> <br/><small style="color: #64748b;">Código: ${g.code}</small></td>');
+        buffer.write('<td>Q${budget.toStringAsFixed(2)}</td>');
+        buffer.write('<td>Q${spent.toStringAsFixed(2)}</td>');
+        buffer.write('<td style="color: ${remaining < 0 ? '#b91c1c' : '#15803d'}; font-weight: bold;">Q${remaining.toStringAsFixed(2)}</td>');
+        buffer.write('<td><span class="$statusBadge">$statusLabel</span></td>');
+        buffer.write('</tr>');
+      }
+
+      buffer.write('</tbody></table>');
+    }
+
+    // Section 6: Groups List
+    if (includeGroups && _latestGroups.isNotEmpty) {
+      buffer.write('<h2>Registro General de Grupos</h2>');
+      buffer.write('<table><thead><tr><th>Nombre de Grupo</th><th>Código de Acceso</th><th>Miembros</th><th>Creado por</th></tr></thead><tbody>');
+      for (var g in _latestGroups) {
+        final creatorName = g.createdBy.split('@')[0];
+        buffer.write('<tr><td><strong>${g.name}</strong></td><td><code>${g.code}</code></td><td>${g.members.length} miembros</td><td>$creatorName (${g.createdBy})</td></tr>');
+      }
+      buffer.write('</tbody></table>');
+    }
+
+    buffer.write('<script>window.onload = function() { window.print(); }</script>');
+    buffer.write('</body></html>');
+
+    printHtmlReport(
+      title: 'Reporte_Administracion_Central',
+      htmlContent: buffer.toString(),
     );
   }
 
@@ -268,7 +512,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen>
           IconButton(
             icon: const Icon(Icons.picture_as_pdf, color: Colors.white),
             tooltip: tr('Exportar PDF', 'Export PDF'),
-            onPressed: _exportCurrentTabPdf,
+            onPressed: _showAdminExportOptionsDialog,
           ),
           TextButton.icon(
             onPressed: widget.onExitAdminMode,

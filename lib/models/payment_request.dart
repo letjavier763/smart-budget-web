@@ -14,6 +14,7 @@ class PaymentRequest {
   final String rubro;
   final DateTime date;
   final String? imageUrl;
+  final String? expenseId;
 
   PaymentRequest({
     required this.id,
@@ -29,6 +30,7 @@ class PaymentRequest {
     required this.rubro,
     required this.date,
     this.imageUrl,
+    this.expenseId,
   });
 
   static double _parseDouble(dynamic value) {
@@ -70,6 +72,7 @@ class PaymentRequest {
       rubro: map['rubro']?.toString() ?? 'Otros',
       date: map['date'] != null ? _parseDateTime(map['date']) : created,
       imageUrl: map['imageUrl']?.toString(),
+      expenseId: map['expenseId']?.toString(),
     );
   }
 
@@ -87,6 +90,7 @@ class PaymentRequest {
       'rubro': rubro,
       'date': Timestamp.fromDate(date),
       if (imageUrl != null) 'imageUrl': imageUrl,
+      if (expenseId != null) 'expenseId': expenseId,
     };
   }
 }

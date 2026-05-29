@@ -23,6 +23,12 @@ void main() async {
   final prefs = await SharedPreferences.getInstance();
   final themeModeString = prefs.getString('theme_mode') ?? 'system';
   adminDemoNotifier.value = prefs.getBool('demo_admin_mode') ?? false;
+
+  // Capturar código de invitación pendiente desde la URL
+  final code = Uri.base.queryParameters['code'];
+  if (code != null && code.isNotEmpty) {
+    await prefs.setString('pending_join_code', code);
+  }
   
   if (themeModeString == 'light') {
     themeNotifier.value = ThemeMode.light;

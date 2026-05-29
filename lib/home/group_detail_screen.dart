@@ -15,6 +15,7 @@ import '../models/group_invitation.dart';
 import '../models/payment_request.dart';
 import '../services/firestore_service.dart';
 import '../theme/translations.dart';
+import '../utils/print_utility.dart';
 
 
 class Settlement {
@@ -351,6 +352,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
     }
   }
 
+  // ignore: unused_element
   Future<void> _showPaymentRequestDialog(Settlement s) async {
     amountController.text = s.amount.toStringAsFixed(2);
     final referenceController = TextEditingController();
@@ -870,30 +872,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  if (currentUserIsAdmin && email != group.createdBy) ...[
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(tr('Administrador', 'Administrator')),
-                        Switch(
-                          value: group.admins.any(
-                            (admin) =>
-                                admin.trim().toLowerCase() ==
-                                email.trim().toLowerCase(),
-                          ),
-                          onChanged: (val) async {
-                            Navigator.pop(ctx);
-                            await firestoreService.toggleAdminStatus(
-                              groupId: group.id,
-                              memberEmail: email,
-                              makeAdmin: val,
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
+
                 ],
               ),
               actions: [
@@ -1010,6 +989,29 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                 }
 
                 FocusScope.of(context).unfocus();
+
+                final confirm = await showDialog<bool>(
+                  context: context,
+                  builder: (ctx) => AlertDialog(
+                    title: Text(tr('¿Modificar gasto?', 'Modify expense?')),
+                    content: Text(tr(
+                      'Este es un gasto general. Al modificarlo, se recalculará la división del gasto y se actualizarán automáticamente las solicitudes de pago pendientes de todos los miembros involucrados. ¿Deseas continuar?',
+                      'This is a general expense. Modifying it will recalculate the split and automatically update the pending payment requests for all involved members. Do you want to continue?',
+                    )),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(ctx, false),
+                        child: Text(tr('No', 'No')),
+                      ),
+                      ElevatedButton(
+                        onPressed: () => Navigator.pop(ctx, true),
+                        child: Text(tr('Sí, modificar', 'Yes, modify')),
+                      ),
+                    ],
+                  ),
+                );
+
+                if (confirm != true) return;
 
                 try {
                   await firestoreService.updateExpense(
@@ -1204,6 +1206,9 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
     titleController.text = group.name;
     String? currentImageBase64 = group.imageUrl;
     String currentName = group.name;
+    final maxMembersCtrl = TextEditingController(text: group.maxMembers?.toString() ?? '');
+    final budgetCtrl = TextEditingController(text: group.initialBudget?.toString() ?? '');
+    DateTime? selectedActiveUntil = group.activeUntil;
 
     await showDialog<void>(
       context: context,
@@ -1220,6 +1225,9 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
               admins: group.admins,
               createdAt: group.createdAt,
               imageUrl: currentImageBase64,
+              maxMembers: int.tryParse(maxMembersCtrl.text),
+              initialBudget: double.tryParse(budgetCtrl.text),
+              activeUntil: selectedActiveUntil,
             );
 
             Future<void> pickImage() async {
@@ -1330,12 +1338,56 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                         });
                       },
                     ),
+                    const SizedBox(height: 12),
+                    TextField(
+                      controller: maxMembersCtrl,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: tr('Capacidad máxima de miembros (opcional)', 'Max member capacity (optional)'),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    TextField(
+                      controller: budgetCtrl,
+                      keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                      decoration: InputDecoration(
+                        labelText: tr('Presupuesto inicial (opcional)', 'Initial budget (optional)'),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: const Icon(Icons.timer_outlined),
+                      title: Text(
+                        selectedActiveUntil == null
+                            ? tr('Tiempo de actividad (opcional)', 'Activity duration (optional)')
+                            : '${tr('Activo hasta', 'Active until')}: ${selectedActiveUntil!.day}/${selectedActiveUntil!.month}/${selectedActiveUntil!.year}',
+                      ),
+                      trailing: TextButton(
+                        onPressed: () async {
+                          final date = await showDatePicker(
+                            context: context,
+                            initialDate: selectedActiveUntil ?? DateTime.now().add(const Duration(days: 7)),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime.now().add(const Duration(days: 3650)),
+                          );
+                          if (date != null) {
+                            setDialogState(() {
+                              selectedActiveUntil = date;
+                            });
+                          }
+                        },
+                        child: Text(tr('Seleccionar', 'Select')),
+                      ),
+                    ),
                   ],
                 ),
               ),
               actions: [
                 TextButton(
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: Text(tr('Cancelar', 'Cancel')),
                 ),
                 ElevatedButton(
@@ -1361,6 +1413,9 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                         groupId: group.id,
                         name: name,
                         imageUrl: currentImageBase64,
+                        maxMembers: int.tryParse(maxMembersCtrl.text.trim()),
+                        initialBudget: double.tryParse(budgetCtrl.text.trim().replaceAll(',', '.')),
+                        activeUntil: selectedActiveUntil,
                       );
                       navigator.pop();
                       titleController.clear();
@@ -1715,12 +1770,8 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
     }
   }
 
-  void _showManageMembersSheet(BuildContext context, GroupModel group) {
+  void _showManageMembersSheet(BuildContext context, GroupModel initialGroup) {
     final currentUserEmail = FirebaseAuth.instance.currentUser?.email ?? '';
-    final isAdmin = group.admins.any(
-      (admin) =>
-          admin.trim().toLowerCase() == currentUserEmail.trim().toLowerCase(),
-    );
 
     showModalBottomSheet(
       context: context,
@@ -1728,108 +1779,321 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
-      builder: (ctx) => Padding(
-        padding: EdgeInsets.only(
-          left: 24,
-          right: 24,
-          top: 24,
-          bottom: MediaQuery.of(ctx).viewInsets.bottom + 24,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              tr('Gestionar Miembros', 'Manage Members'),
-              style: Theme.of(
-                context,
-              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 10,
+      builder: (ctx) {
+        return StreamBuilder<GroupModel?>(
+          stream: _groupStream,
+          builder: (context, groupSnap) {
+            final group = groupSnap.data ?? initialGroup;
+            final isAdmin = group.admins.any(
+              (admin) => admin.trim().toLowerCase() == currentUserEmail.trim().toLowerCase(),
+            );
+
+            return Padding(
+              padding: EdgeInsets.only(
+                left: 24,
+                right: 24,
+                top: 24,
+                bottom: MediaQuery.of(ctx).viewInsets.bottom + 24,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    tr('Gestionar Miembros', 'Manage Members'),
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 10,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Text(
+                            '${tr('Código', 'Code')}: ${group.code}',
+                            style: const TextStyle(fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      IconButton.filled(
+                        icon: const Icon(Icons.copy),
+                        onPressed: () async {
+                          await Clipboard.setData(ClipboardData(text: group.code));
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(tr('Código copiado.', 'Code copied.')),
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                      IconButton.filled(
+                        icon: const Icon(Icons.share),
+                        onPressed: () {
+                          final link = 'smartbudget://join?code=${group.code}';
+                          Share.share(
+                            '${tr('¡Únete a mi grupo', 'Join my group')} "${group.name}" ${tr('en Smart Budget!\n👉 Ingresa directo con este enlace:\n', 'on Smart Budget!\n👉 Enter directly with this link:\n')}$link\n\n'
+                            '${tr('O usa el código de invitación: ', 'Or use the invitation code: ')}${group.code}',
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    tr('Lista de Miembros', 'Members List'),
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
+                  ),
+                  const SizedBox(height: 8),
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxHeight: MediaQuery.of(context).size.height * 0.35,
                     ),
-                    decoration: BoxDecoration(
-                      color: Theme.of(
-                        context,
-                      ).colorScheme.surfaceContainerHighest,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      '${tr('Código', 'Code')}: ${group.code}',
-                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      itemCount: group.members.length,
+                      separatorBuilder: (_, index) => const Divider(height: 1),
+                      itemBuilder: (ctx, index) {
+                        final m = group.members[index];
+                        final isMemberAdmin = group.admins.any(
+                          (admin) => admin.trim().toLowerCase() == m.trim().toLowerCase(),
+                        );
+                        final isCreator = m.trim().toLowerCase() == group.createdBy.trim().toLowerCase();
+                        final isCurrentUserCreator = group.createdBy.trim().toLowerCase() == currentUserEmail.trim().toLowerCase();
+
+                        return FutureBuilder<DocumentSnapshot?>(
+                          future: firestoreService.getUserProfileByEmail(m),
+                          builder: (context, userSnap) {
+                            final userData = userSnap.data?.data() as Map<String, dynamic>?;
+                            final photoUrl = userData?['photoUrl'] as String?;
+                            final name = _getMemberName(m);
+
+                            return ListTile(
+                              contentPadding: EdgeInsets.zero,
+                              leading: CircleAvatar(
+                                radius: 20,
+                                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                                backgroundImage: photoUrl != null
+                                    ? MemoryImage(base64Decode(photoUrl))
+                                    : null,
+                                child: photoUrl == null
+                                    ? Text(
+                                        name.substring(0, 1).toUpperCase(),
+                                        style: TextStyle(
+                                          color: Theme.of(context).colorScheme.onPrimaryContainer,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      )
+                                    : null,
+                              ),
+                              title: Text(
+                                name,
+                                style: const TextStyle(fontWeight: FontWeight.w600),
+                              ),
+                              subtitle: Text(
+                                isCreator
+                                    ? tr('Creador', 'Creator')
+                                    : isMemberAdmin
+                                        ? tr('Administrador', 'Administrator')
+                                        : tr('Miembro', 'Member'),
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                  color: isCreator
+                                      ? Colors.purple
+                                      : isMemberAdmin
+                                          ? Colors.orange.shade800
+                                          : Theme.of(context).colorScheme.outline,
+                                ),
+                              ),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  if (isAdmin && !isCreator) ...[
+                                    Switch(
+                                      value: isMemberAdmin,
+                                      activeThumbColor: Colors.orange,
+                                      activeTrackColor: Colors.orange.shade800.withAlpha(120),
+                                      onChanged: isCurrentUserCreator
+                                          ? (val) async {
+                                              await firestoreService.toggleAdminStatus(
+                                                groupId: group.id,
+                                                memberEmail: m,
+                                                makeAdmin: val,
+                                              );
+                                            }
+                                          : null,
+                                    ),
+                                    const SizedBox(width: 4),
+                                    if (isCurrentUserCreator || !isMemberAdmin)
+                                      IconButton(
+                                        icon: Icon(
+                                          Icons.delete_outline,
+                                          color: Theme.of(context).colorScheme.error,
+                                        ),
+                                        onPressed: () async {
+                                        final confirm = await showDialog<bool>(
+                                          context: context,
+                                          builder: (confirmCtx) => AlertDialog(
+                                            title: Text(tr('Eliminar Miembro', 'Remove Member')),
+                                            content: Text(
+                                              '${tr('¿Estás seguro de que deseas eliminar a', 'Are you sure you want to remove')} $name ${tr('del grupo?', 'from the group?')}',
+                                            ),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(confirmCtx, false),
+                                                child: Text(tr('Cancelar', 'Cancel')),
+                                              ),
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor: Theme.of(context).colorScheme.error,
+                                                ),
+                                                onPressed: () => Navigator.pop(confirmCtx, true),
+                                                child: Text(
+                                                  tr('Eliminar', 'Remove'),
+                                                  style: const TextStyle(color: Colors.white),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+
+                                        if (confirm == true) {
+                                          await removeMember(m, group);
+                                        }
+                                      },
+                                    ),
+                                  ] else if (isCreator) ...[
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 12.0),
+                                      child: Icon(Icons.star, color: Colors.purple.shade400, size: 20),
+                                    ),
+                                  ],
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      },
                     ),
                   ),
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: memberController,
+                    decoration: InputDecoration(
+                      labelText: tr('Invitar por correo', 'Invite by email'),
+                      prefixIcon: const Icon(Icons.person_add_outlined),
+                      suffixIcon: IconButton(
+                        icon: const Icon(Icons.send),
+                        onPressed: () {
+                          addMember(group);
+                          Navigator.pop(ctx);
+                        },
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  void _showExportOptionsDialog(GroupModel group, List<Expense> expenses, List<PaymentRequest> requests) {
+    bool includeGeneral = true;
+    bool includeBalances = true;
+    bool includePaid = true;
+    bool includeUnpaid = true;
+
+    showDialog(
+      context: context,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setState) => AlertDialog(
+          title: Text(tr('Exportar Reporte PDF', 'Export PDF Report')),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  tr(
+                    'Selecciona las secciones que deseas incluir en el reporte:',
+                    'Select the sections you want to include in the report:',
+                  ),
+                  style: const TextStyle(fontSize: 14),
                 ),
-                const SizedBox(width: 8),
-                IconButton.filled(
-                  icon: const Icon(Icons.copy),
-                  onPressed: () async {
-                    await Clipboard.setData(ClipboardData(text: group.code));
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(tr('Código copiado.', 'Code copied.')),
-                        ),
-                      );
-                    }
+                const SizedBox(height: 12),
+                CheckboxListTile(
+                  value: includeGeneral,
+                  title: Text(tr('Balance General', 'General Balance')),
+                  subtitle: Text(tr('Resumen total, presupuesto y deudas globales.', 'Total summary, budget and global debts.')),
+                  onChanged: (val) {
+                    if (val != null) setState(() => includeGeneral = val);
                   },
                 ),
-                IconButton.filled(
-                  icon: const Icon(Icons.share),
-                  onPressed: () {
-                    final link = 'smartbudget://join?code=${group.code}';
-                    Share.share(
-                      '${tr('¡Únete a mi grupo', 'Join my group')} "${group.name}" ${tr('en Smart Budget!\n👉 Ingresa directo con este enlace:\n', 'on Smart Budget!\n👉 Enter directly with this link:\n')}$link\n\n'
-                      '${tr('O usa el código de invitación: ', 'Or use the invitation code: ')}${group.code}',
-                    );
+                CheckboxListTile(
+                  value: includeBalances,
+                  title: Text(tr('Saldos e Integrantes', 'Balances & Members')),
+                  subtitle: Text(tr('Balances netos de cada persona y liquidaciones sugeridas.', 'Net balances of each person and suggested settlements.')),
+                  onChanged: (val) {
+                    if (val != null) setState(() => includeBalances = val);
+                  },
+                ),
+                CheckboxListTile(
+                  value: includePaid,
+                  title: Text(tr('Personas que ya pagaron', 'People who have paid')),
+                  subtitle: Text(tr('Listado de pagos reales y confirmaciones registradas.', 'List of actual payments and registered confirmations.')),
+                  onChanged: (val) {
+                    if (val != null) setState(() => includePaid = val);
+                  },
+                ),
+                CheckboxListTile(
+                  value: includeUnpaid,
+                  title: Text(tr('Personas con pagos pendientes', 'People with pending payments')),
+                  subtitle: Text(tr('Listado de solicitudes de cobro aún no confirmadas.', 'List of collection requests not yet confirmed.')),
+                  onChanged: (val) {
+                    if (val != null) setState(() => includeUnpaid = val);
                   },
                 ),
               ],
             ),
-            const SizedBox(height: 16),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: group.members.map((m) {
-                final isMemberAdmin = group.admins.contains(m);
-                return InputChip(
-                  avatar: isMemberAdmin
-                      ? const Icon(Icons.star, size: 16, color: Colors.orange)
-                      : null,
-                  label: Text(_getMemberName(m)),
-                  onPressed: () => _showMemberProfile(m, group, isAdmin),
-                  onDeleted: (isAdmin && m != group.createdBy)
-                      ? () {
-                          Navigator.pop(ctx);
-                          removeMember(m, group);
-                        }
-                      : null,
-                );
-              }).toList(),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: Text(tr('Cancelar', 'Cancel')),
             ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: memberController,
-              decoration: InputDecoration(
-                labelText: tr('Invitar por correo', 'Invite by email'),
-                prefixIcon: const Icon(Icons.person_add_outlined),
-                suffixIcon: IconButton(
-                  icon: const Icon(Icons.send),
-                  onPressed: () {
-                    addMember(group);
-                    Navigator.pop(ctx);
-                  },
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.picture_as_pdf),
+              label: Text(tr('Generar PDF', 'Generate PDF')),
+              onPressed: () {
+                Navigator.pop(ctx);
+                _generateGroupHtmlReport(
+                  group: group,
+                  expenses: expenses,
+                  requests: requests,
+                  includeGeneral: includeGeneral,
+                  includeBalances: includeBalances,
+                  includePaid: includePaid,
+                  includeUnpaid: includeUnpaid,
+                );
+              },
             ),
           ],
         ),
@@ -1837,7 +2101,151 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
     );
   }
 
-  @override
+  void _generateGroupHtmlReport({
+    required GroupModel group,
+    required List<Expense> expenses,
+    required List<PaymentRequest> requests,
+    required bool includeGeneral,
+    required bool includeBalances,
+    required bool includePaid,
+    required bool includeUnpaid,
+  }) {
+    final buffer = StringBuffer();
+    final timeStr = DateTime.now().toLocal().toString().split('.')[0];
+    final groupName = group.name;
+
+    buffer.write('<html><head><meta charset="UTF-8"><title>Reporte - $groupName</title>');
+    buffer.write('<style>');
+    buffer.write('body { font-family: system-ui, -apple-system, sans-serif; padding: 40px; color: #1e293b; background-color: #ffffff; line-height: 1.5; }');
+    buffer.write('.header { border-bottom: 3px solid #003289; padding-bottom: 20px; margin-bottom: 30px; }');
+    buffer.write('h1 { color: #003289; margin: 0 0 10px 0; font-size: 28px; font-weight: 800; }');
+    buffer.write('h2 { color: #0f172a; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 6px; margin: 30px 0 15px 0; font-size: 20px; }');
+    buffer.write('.meta { color: #64748b; font-size: 14px; margin-bottom: 5px; }');
+    buffer.write('table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 25px; }');
+    buffer.write('th, td { border: 1px solid #e2e8f0; padding: 12px 16px; text-align: left; font-size: 14px; }');
+    buffer.write('th { background-color: #003289; color: #ffffff; font-weight: 600; }');
+    buffer.write('tr:nth-child(even) { background-color: #f8fafc; }');
+    buffer.write('.badge { display: inline-block; padding: 2px 8px; font-size: 12px; font-weight: 600; border-radius: 4px; }');
+    buffer.write('.badge-success { background-color: #dcfce7; color: #15803d; }');
+    buffer.write('.badge-warning { background-color: #fef9c3; color: #a16207; }');
+    buffer.write('.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; }');
+    buffer.write('.card { border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; background-color: #f8fafc; }');
+    buffer.write('.card-title { font-weight: 600; color: #475569; font-size: 12px; text-transform: uppercase; margin-bottom: 6px; }');
+    buffer.write('.card-value { font-size: 20px; font-weight: 700; color: #003289; }');
+    buffer.write('</style></head><body>');
+
+    // Header
+    buffer.write('<div class="header">');
+    buffer.write('<h1>SmartBudget - Reporte de Grupo</h1>');
+    buffer.write('<div class="meta"><strong>Grupo:</strong> $groupName</div>');
+    buffer.write('<div class="meta"><strong>Código:</strong> ${group.code}</div>');
+    buffer.write('<div class="meta"><strong>Fecha de reporte:</strong> $timeStr</div>');
+    buffer.write('</div>');
+
+    // General Balance
+    if (includeGeneral) {
+      final totalG = expenses.where((e) => e.type != 'payment').fold<double>(0, (s, e) => s + e.amount);
+      final budget = group.initialBudget ?? 0.0;
+      final remaining = budget - totalG;
+
+      buffer.write('<h2>Balance General</h2>');
+      buffer.write('<div class="grid">');
+      buffer.write('<div class="card"><div class="card-title">Gasto Total</div><div class="card-value">Q${totalG.toStringAsFixed(2)}</div></div>');
+      if (budget > 0) {
+        buffer.write('<div class="card"><div class="card-title">Presupuesto Inicial</div><div class="card-value">Q${budget.toStringAsFixed(2)}</div></div>');
+        buffer.write('<div class="card"><div class="card-title">Presupuesto Restante</div><div class="card-value">Q${remaining.toStringAsFixed(2)}</div></div>');
+      }
+      buffer.write('<div class="card"><div class="card-title">Miembros Activos</div><div class="card-value">${group.members.length}</div></div>');
+      buffer.write('</div>');
+    }
+
+    // Saldos y Balances
+    if (includeBalances) {
+      buffer.write('<h2>Saldos y Cuentas de Integrantes</h2>');
+      buffer.write('<table><thead><tr><th>Miembro</th><th>Balance Neto</th><th>Estado</th></tr></thead><tbody>');
+      final balances = calculateBalances(expenses, group.members);
+      for (final member in group.members) {
+        final name = _getMemberName(member);
+        final bal = balances[member.trim().toLowerCase()] ?? 0.0;
+        String statusText;
+        String badgeClass;
+        if (bal > 0.01) {
+          statusText = 'A favor: +Q${bal.toStringAsFixed(2)}';
+          badgeClass = 'badge badge-success';
+        } else if (bal < -0.01) {
+          statusText = 'Debe: Q${(-bal).toStringAsFixed(2)}';
+          badgeClass = 'badge badge-warning';
+        } else {
+          statusText = 'Al día (Q0.00)';
+          badgeClass = 'badge';
+        }
+        buffer.write('<tr><td><strong>$name</strong> ($member)</td><td>Q${bal.toStringAsFixed(2)}</td><td><span class="$badgeClass">$statusText</span></td></tr>');
+      }
+      buffer.write('</tbody></table>');
+
+      // Suggested Liquidations
+      final settlements = buildSettlements(balances);
+      buffer.write('<h3>Liquidaciones Sugeridas</h3>');
+      if (settlements.isEmpty) {
+        buffer.write('<p><em>No hay liquidaciones pendientes. Todas las cuentas están saldadas.</em></p>');
+      } else {
+        buffer.write('<table><thead><tr><th>Deudor</th><th>Paga a</th><th>Monto</th></tr></thead><tbody>');
+        for (final s in settlements) {
+          final debtorName = _getMemberName(s.debtor);
+          final creditorName = _getMemberName(s.creditor);
+          buffer.write('<tr><td>$debtorName</td><td>$creditorName</td><td><strong>Q${s.amount.toStringAsFixed(2)}</strong></td></tr>');
+        }
+        buffer.write('</tbody></table>');
+      }
+    }
+
+    // People who have paid (payments already confirmed)
+    if (includePaid) {
+      buffer.write('<h2>Integrantes que han Pagado (Pagos Confirmados)</h2>');
+      final paidExpenses = expenses.where((e) => e.type == 'payment').toList();
+      if (paidExpenses.isEmpty) {
+        buffer.write('<p><em>No se han registrado pagos confirmados todavía.</em></p>');
+      } else {
+        buffer.write('<table><thead><tr><th>Quién Pagó</th><th>A Quién</th><th>Monto</th><th>Categoría</th><th>Fecha</th></tr></thead><tbody>');
+        for (final p in paidExpenses) {
+          final payerName = _getMemberName(p.paidBy);
+          final receiverName = _getMemberName(p.paidTo ?? '');
+          final dateStr = '${p.createdAt.day}/${p.createdAt.month}/${p.createdAt.year}';
+          buffer.write('<tr><td>$payerName</td><td>$receiverName</td><td><strong>Q${p.amount.toStringAsFixed(2)}</strong></td><td>${translateCategory(p.category)}</td><td>$dateStr</td></tr>');
+        }
+        buffer.write('</tbody></table>');
+      }
+    }
+
+    // People who haven't paid (pending payment requests)
+    if (includeUnpaid) {
+      buffer.write('<h2>Integrantes con Pagos Pendientes (Solicitudes Activas)</h2>');
+      final pendingReqs = requests.where((r) => r.status == 'pendiente' || r.status == 'pendiente_boleta').toList();
+      if (pendingReqs.isEmpty) {
+        buffer.write('<p><em>No hay solicitudes de pago pendientes en este grupo.</em></p>');
+      } else {
+        buffer.write('<table><thead><tr><th>Deudor</th><th>Cobrador</th><th>Monto</th><th>Concepto</th><th>Fecha Límite/Creación</th><th>Estado</th></tr></thead><tbody>');
+        for (final r in pendingReqs) {
+          final debtorName = _getMemberName(r.fromEmail);
+          final creditorName = _getMemberName(r.toEmail);
+          final dateStr = '${r.date.day}/${r.date.month}/${r.date.year}';
+          final concept = r.reference ?? 'Gasto general';
+          final statusLabel = r.status == 'pendiente_boleta' ? 'Pendiente boleta' : 'En revisión';
+          buffer.write('<tr><td>$debtorName</td><td>$creditorName</td><td><strong>Q${r.amount.toStringAsFixed(2)}</strong></td><td>$concept</td><td>$dateStr</td><td><span class="badge badge-warning">$statusLabel</span></td></tr>');
+        }
+        buffer.write('</tbody></table>');
+      }
+    }
+
+    buffer.write('<script>window.onload = function() { window.print(); }</script>');
+    buffer.write('</body></html>');
+
+    printHtmlReport(
+      title: 'Reporte_Grupo_${groupName.replaceAll(' ', '_')}',
+      htmlContent: buffer.toString(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -1845,7 +2253,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
     final currentUserEmail = FirebaseAuth.instance.currentUser?.email ?? '';
 
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: StreamBuilder<GroupModel?>(
         stream: _groupStream,
         builder: (context, groupSnapshot) {
@@ -1887,7 +2295,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                           const SizedBox(width: 12),
                           Expanded(
                             child: Text(
-                              group.name,
+                                group.name,
                               style: textTheme.titleLarge?.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: colorScheme.onSurface,
@@ -1898,6 +2306,12 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                         ],
                       ),
                       actions: [
+                        if (isAdmin)
+                          IconButton(
+                            icon: const Icon(Icons.download_outlined),
+                            tooltip: tr('Exportar Reporte', 'Export Report'),
+                            onPressed: () => _showExportOptionsDialog(group, expenses, requests),
+                          ),
                         IconButton(
                           icon: const Icon(Icons.group_outlined),
                           tooltip: tr('Miembros', 'Members'),
@@ -1983,6 +2397,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                         tabs: [
                           Tab(text: tr('Resumen', 'Summary')),
                           Tab(text: tr('Historial', 'History')),
+                          Tab(text: tr('Estadísticas', 'Statistics')),
                         ],
                       ),
                     ),
@@ -2031,26 +2446,75 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                                               ),
                                         ),
                                         const SizedBox(height: 4),
-                                        Text(
-                                          tr(
-                                            'Gasto Total del Grupo',
-                                            'Total Group Expense',
-                                          ),
-                                          style: textTheme.bodyMedium?.copyWith(
-                                            color: colorScheme
-                                                .onPrimaryContainer
-                                                .withAlpha(180),
-                                          ),
-                                        ),
-                                        const SizedBox(height: 8),
-                                        Text(
-                                          'Q${total.toStringAsFixed(2)}',
-                                          style: textTheme.displaySmall
-                                              ?.copyWith(
-                                                color: colorScheme
-                                                    .onPrimaryContainer,
-                                                fontWeight: FontWeight.bold,
+                                        Row(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    tr(
+                                                      'Gasto Total del Grupo',
+                                                      'Total Group Expense',
+                                                    ),
+                                                    style: textTheme.bodyMedium?.copyWith(
+                                                      color: colorScheme
+                                                          .onPrimaryContainer
+                                                          .withAlpha(180),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 8),
+                                                  Text(
+                                                    'Q${total.toStringAsFixed(2)}',
+                                                    style: textTheme.titleLarge?.copyWith(
+                                                      color: colorScheme.onPrimaryContainer,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
+                                            ),
+                                            if (group.initialBudget != null) ...[
+                                              const SizedBox(width: 16),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      tr(
+                                                        'Presupuesto Restante',
+                                                        'Remaining Budget',
+                                                      ),
+                                                      style: textTheme.bodyMedium?.copyWith(
+                                                        color: colorScheme
+                                                            .onPrimaryContainer
+                                                            .withAlpha(180),
+                                                      ),
+                                                    ),
+                                                    const SizedBox(height: 8),
+                                                    Text(
+                                                      'Q${(group.initialBudget! - total).toStringAsFixed(2)}',
+                                                      style: textTheme.titleLarge?.copyWith(
+                                                        color: (group.initialBudget! - total) < 0
+                                                            ? Colors.redAccent.shade100
+                                                            : colorScheme.onPrimaryContainer,
+                                                        fontWeight: FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    const SizedBox(height: 2),
+                                                    Text(
+                                                      '${tr('Límite', 'Limit')}: Q${group.initialBudget!.toStringAsFixed(2)}',
+                                                      style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: colorScheme.onPrimaryContainer.withAlpha(140),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ],
                                         ),
                                         const SizedBox(height: 12),
                                         Text(
@@ -2081,82 +2545,286 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                                 ),
                               ),
                               const SizedBox(height: 24),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    tr('Miembros y Balances', 'Members and Balances'),
+                                    style: textTheme.titleMedium?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: colorScheme.onSurfaceVariant,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${group.members.length} ${tr('miembros', 'members')}',
+                                    style: textTheme.bodySmall?.copyWith(
+                                      color: colorScheme.outline,
+                                    ),
+                                  ),
+                                ],
+                              ),
                               const SizedBox(height: 12),
 
-                              const SizedBox(height: 8),
-                              GridView.count(
-                                crossAxisCount: 2,
+                              // Group balance visual summary (Mini Card representing the general balance distribution)
+                              Builder(
+                                builder: (context) {
+                                  // Calculate how many members are positive, negative, balanced
+                                  int inFavorCount = 0;
+                                  int owesCount = 0;
+                                  double totalPositive = 0.0;
+                                  double totalNegative = 0.0;
+
+                                  for (final m in group.members) {
+                                    final bal = balances[m.trim().toLowerCase()] ?? 0.0;
+                                    if (bal > 0.01) {
+                                      inFavorCount++;
+                                      totalPositive += bal;
+                                    } else if (bal < -0.01) {
+                                      owesCount++;
+                                      totalNegative += bal.abs();
+                                    }
+                                  }
+
+                                  final totalBalanceSum = totalPositive + totalNegative;
+                                  final inFavorPct = totalBalanceSum > 0 ? (totalPositive / totalBalanceSum) : 0.5;
+
+                                  return Container(
+                                    padding: const EdgeInsets.all(16),
+                                    decoration: BoxDecoration(
+                                      color: colorScheme.surfaceContainerHighest.withAlpha(50),
+                                      borderRadius: BorderRadius.circular(16),
+                                      border: Border.all(color: colorScheme.outlineVariant.withAlpha(80)),
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Column(
+                                              children: [
+                                                Text(
+                                                  tr('A favor', 'Lent'),
+                                                  style: TextStyle(
+                                                    fontSize: 11,
+                                                    color: Colors.green.shade700,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 4),
+                                                Text(
+                                                  'Q${totalPositive.toStringAsFixed(2)}',
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.green.shade700,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  '($inFavorCount ${tr('miem.', 'memb.')})',
+                                                  style: TextStyle(fontSize: 10, color: colorScheme.outline),
+                                                ),
+                                              ],
+                                            ),
+                                            // Mini circular indicator
+                                            Stack(
+                                              alignment: Alignment.center,
+                                              children: [
+                                                SizedBox(
+                                                  width: 54,
+                                                  height: 54,
+                                                  child: CircularProgressIndicator(
+                                                    value: inFavorPct,
+                                                    strokeWidth: 6,
+                                                    backgroundColor: colorScheme.error.withAlpha(50),
+                                                    valueColor: AlwaysStoppedAnimation<Color>(Colors.green.shade600),
+                                                  ),
+                                                ),
+                                                Icon(
+                                                  Icons.pie_chart_outline,
+                                                  color: colorScheme.onSurfaceVariant,
+                                                  size: 20,
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              children: [
+                                                Text(
+                                                  tr('Deben', 'Owe'),
+                                                  style: TextStyle(
+                                                    fontSize: 11,
+                                                    color: colorScheme.error,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 4),
+                                                Text(
+                                                  'Q${totalNegative.toStringAsFixed(2)}',
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: colorScheme.error,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  '($owesCount ${tr('miem.', 'memb.')})',
+                                                  style: TextStyle(fontSize: 10, color: colorScheme.outline),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
+                              const SizedBox(height: 12),
+
+                              // Improved members list mimicking Friends Screen list with balance details
+                              ListView.separated(
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
-                                crossAxisSpacing: 8,
-                                mainAxisSpacing: 8,
-                                childAspectRatio: 1.6,
-                                children: group.members
-                                    .where((m) => m != currentUserEmail)
-                                    .map((member) {
-                                      final bal =
-                                          balances[member
-                                              .trim()
-                                              .toLowerCase()] ??
-                                          0.0;
-                                      final iOwe = bal < -0.01;
-                                      final theyOwe = bal > 0.01;
-                                      final s = settlements.firstWhere(
-                                        (s) =>
-                                            s.creditor.trim().toLowerCase() ==
-                                                currentUserEmail
-                                                    .trim()
-                                                    .toLowerCase() &&
-                                            s.debtor.trim().toLowerCase() ==
-                                                member.trim().toLowerCase(),
-                                        orElse: () => Settlement('', '', 0),
-                                      );
-                                      return GestureDetector(
-                                        onTap: () => _showMemberProfile(
-                                          member,
-                                          group,
-                                          isAdmin,
+                                itemCount: group.members.length,
+                                separatorBuilder: (_, index) => const SizedBox(height: 8),
+                                itemBuilder: (context, index) {
+                                  final member = group.members[index];
+                                  final isCurrentUser = member.trim().toLowerCase() == currentUserEmail.trim().toLowerCase();
+                                  final name = _getMemberName(member);
+                                  
+                                  final bal = balances[member.trim().toLowerCase()] ?? 0.0;
+                                  final iOwe = bal < -0.01;
+                                  final theyOwe = bal > 0.01;
+
+                                  final statusColor = iOwe
+                                      ? colorScheme.error
+                                      : theyOwe
+                                          ? Colors.green.shade700
+                                          : colorScheme.outline;
+
+                                  final s = settlements.firstWhere(
+                                    (s) =>
+                                        s.creditor.trim().toLowerCase() ==
+                                            currentUserEmail.trim().toLowerCase() &&
+                                        s.debtor.trim().toLowerCase() ==
+                                            member.trim().toLowerCase(),
+                                    orElse: () => Settlement('', '', 0),
+                                  );
+
+                                  return FutureBuilder<DocumentSnapshot?>(
+                                    future: firestoreService.getUserProfileByEmail(member),
+                                    builder: (context, userSnap) {
+                                      final userData = userSnap.data?.data() as Map<String, dynamic>?;
+                                      final photoUrl = userData?['photoUrl'] as String?;
+
+                                      return Card(
+                                        elevation: 0,
+                                        margin: EdgeInsets.zero,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(14),
+                                          side: BorderSide(
+                                            color: colorScheme.outlineVariant.withAlpha(100),
+                                          ),
                                         ),
-                                        child: _BalanceCard(
-                                          label: _getMemberName(member),
-                                          subtitle: iOwe
-                                              ? '${tr('Debe', 'Owes')} Q${(-bal).toStringAsFixed(2)}'
-                                              : theyOwe
-                                              ? '${tr('A favor', 'Lent')} Q${bal.toStringAsFixed(2)}'
-                                              : tr('Equilibrado', 'Balanced'),
-                                          status: iOwe
-                                              ? _BalanceStatus.owes
-                                              : theyOwe
-                                              ? _BalanceStatus.owed
-                                              : _BalanceStatus.balanced,
-                                          isCurrentUser: false,
-                                          onReminder: s.amount > 0
-                                              ? () async {
-                                                  await firestoreService
-                                                      .sendPaymentReminder(
-                                                        groupId: group.id,
-                                                        fromEmail: member,
-                                                        toEmail:
-                                                            currentUserEmail,
-                                                        amount: s.amount,
-                                                      );
-                                                  if (context.mounted) {
-                                                    ScaffoldMessenger.of(
-                                                      context,
-                                                    ).showSnackBar(
-                                                      SnackBar(
-                                                        content: Text(
-                                                          '${tr('Recordatorio enviado a', 'Reminder sent to')} ${_getMemberName(member)}',
-                                                        ),
-                                                      ),
+                                        child: ListTile(
+                                          onTap: () => _showMemberProfile(
+                                            member,
+                                            group,
+                                            isAdmin,
+                                          ),
+                                          contentPadding: const EdgeInsets.symmetric(
+                                            horizontal: 16,
+                                            vertical: 8,
+                                          ),
+                                          leading: CircleAvatar(
+                                            radius: 24,
+                                            backgroundColor: colorScheme.primaryContainer,
+                                            backgroundImage: photoUrl != null
+                                                ? MemoryImage(base64Decode(photoUrl))
+                                                : null,
+                                            child: photoUrl == null
+                                                ? Text(
+                                                    name.substring(0, 1).toUpperCase(),
+                                                    style: TextStyle(
+                                                      color: colorScheme.onPrimaryContainer,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  )
+                                                : null,
+                                          ),
+                                          title: Text(
+                                            '$name${isCurrentUser ? ' (Tú)' : ''}',
+                                            style: const TextStyle(fontWeight: FontWeight.w600),
+                                          ),
+                                          subtitle: Text(
+                                            member,
+                                            style: textTheme.bodySmall?.copyWith(
+                                              color: colorScheme.outline,
+                                            ),
+                                          ),
+                                          trailing: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.end,
+                                                children: [
+                                                  Text(
+                                                    iOwe
+                                                        ? tr('Debe', 'Owes')
+                                                        : theyOwe
+                                                            ? tr('A favor', 'Lent')
+                                                            : tr('Equilibrado', 'Balanced'),
+                                                    style: TextStyle(
+                                                      fontSize: 10,
+                                                      fontWeight: FontWeight.w500,
+                                                      color: colorScheme.outline,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 2),
+                                                  Text(
+                                                    'Q${bal.abs().toStringAsFixed(2)}',
+                                                    style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      color: statusColor,
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              if (s.amount > 0 && !isCurrentUser) ...[
+                                                const SizedBox(width: 8),
+                                                IconButton(
+                                                  icon: Icon(
+                                                    Icons.notifications_active_outlined,
+                                                    color: colorScheme.primary,
+                                                    size: 20,
+                                                  ),
+                                                  onPressed: () async {
+                                                    await firestoreService.sendPaymentReminder(
+                                                      groupId: group.id,
+                                                      fromEmail: member,
+                                                      toEmail: currentUserEmail,
+                                                      amount: s.amount,
                                                     );
-                                                  }
-                                                }
-                                              : null,
+                                                    if (context.mounted) {
+                                                      ScaffoldMessenger.of(context).showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            '${tr('Recordatorio enviado a', 'Reminder sent to')} $name',
+                                                          ),
+                                                        ),
+                                                      );
+                                                    }
+                                                  },
+                                                ),
+                                              ],
+                                            ],
+                                          ),
                                         ),
                                       );
-                                    })
-                                    .toList(),
+                                    },
+                                  );
+                                },
                               ),
                               const SizedBox(height: 24),
                               if (requests.isNotEmpty) ...[
@@ -2674,114 +3342,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                                   ],
                                 ),
                               ],
-                              if (settlements.isNotEmpty) ...[
-                                Text(
-                                  tr('Quién debe a quién', 'Who owes who'),
-                                  style: textTheme.titleMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: colorScheme.onSurfaceVariant,
-                                  ),
-                                ),
-                                const SizedBox(height: 12),
-                                ...settlements.map((s) {
-                                  final isSettlePending = requests.any(
-                                    (r) =>
-                                        r.fromEmail.trim().toLowerCase() ==
-                                            currentUserEmail
-                                                .trim()
-                                                .toLowerCase() &&
-                                        r.toEmail.trim().toLowerCase() ==
-                                            s.creditor.trim().toLowerCase() &&
-                                        (r.status == 'pendiente' ||
-                                            r.status == 'pendiente_boleta'),
-                                  );
 
-                                  return Container(
-                                    margin: const EdgeInsets.only(bottom: 8),
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 16,
-                                      vertical: 12,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: colorScheme.surface,
-                                      borderRadius: BorderRadius.circular(16),
-                                      border: Border.all(
-                                        color: colorScheme.outlineVariant,
-                                      ),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: RichText(
-                                            text: TextSpan(
-                                              style: textTheme.bodyMedium
-                                                  ?.copyWith(
-                                                    color:
-                                                        colorScheme.onSurface,
-                                                  ),
-                                              children: [
-                                                TextSpan(
-                                                  text: _getMemberName(
-                                                    s.debtor,
-                                                  ),
-                                                  style: const TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                                TextSpan(
-                                                  text:
-                                                      ' ${tr('debe', 'owes')} ',
-                                                ),
-                                                TextSpan(
-                                                  text:
-                                                      'Q${s.amount.toStringAsFixed(2)}',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: colorScheme.error,
-                                                  ),
-                                                ),
-                                                TextSpan(
-                                                  text: ' ${tr('a', 'to')} ',
-                                                ),
-                                                TextSpan(
-                                                  text: _getMemberName(
-                                                    s.creditor,
-                                                  ),
-                                                  style: const TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        if (currentUserEmail == s.debtor)
-                                          FilledButton.tonal(
-                                            onPressed: isSettlePending
-                                                ? null
-                                                : () =>
-                                                      _showPaymentRequestDialog(
-                                                        s,
-                                                      ),
-                                            style: FilledButton.styleFrom(
-                                              minimumSize: const Size(0, 36),
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                    horizontal: 12,
-                                                  ),
-                                            ),
-                                            child: Text(
-                                              isSettlePending
-                                                  ? tr('Pendiente', 'Pending')
-                                                  : tr('Saldar', 'Settle'),
-                                            ),
-                                          ),
-                                      ],
-                                    ),
-                                  );
-                                }),
-                                const SizedBox(height: 24),
-                              ],
                             ],
                           ),
                         ),
@@ -3096,12 +3657,64 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                                                   color: colorScheme.error,
                                                 ),
                                                 onPressed: () async {
-                                                  await firestoreService
-                                                      .deleteExpense(
-                                                        groupId:
-                                                            widget.group.id,
-                                                        expenseId: expense.id,
-                                                      );
+                                                  final confirm =
+                                                      await showDialog<bool>(
+                                                    context: context,
+                                                    builder: (ctx) => AlertDialog(
+                                                      title: Text(
+                                                        tr('¿Eliminar gasto?',
+                                                            'Delete expense?'),
+                                                      ),
+                                                      content: Text(
+                                                        tr(
+                                                          '¿Estás seguro de que deseas eliminar este gasto? Se eliminarán todas las solicitudes de pago asociadas que no hayan sido pagadas. Si algún miembro ya realizó su pago, se creará una devolución automática para ajustar su balance.',
+                                                          'Are you sure you want to delete this expense? All associated unpaid payment requests will be deleted. If any member has already paid, an automatic refund will be created to adjust their balance.',
+                                                        ),
+                                                      ),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                ctx,
+                                                                false,
+                                                              ),
+                                                          child: Text(
+                                                            tr('Cancelar',
+                                                                'Cancel'),
+                                                          ),
+                                                        ),
+                                                        ElevatedButton(
+                                                          style:
+                                                              ElevatedButton
+                                                                  .styleFrom(
+                                                            backgroundColor:
+                                                                colorScheme
+                                                                    .error,
+                                                            foregroundColor:
+                                                                colorScheme
+                                                                    .onError,
+                                                          ),
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                ctx,
+                                                                true,
+                                                              ),
+                                                          child: Text(
+                                                            tr('Eliminar',
+                                                                'Delete'),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+
+                                                  if (confirm == true) {
+                                                    await firestoreService
+                                                        .deleteExpense(
+                                                      groupId: widget.group.id,
+                                                      expenseId: expense.id,
+                                                    );
+                                                  }
                                                 },
                                               ),
                                             ],
@@ -3114,6 +3727,182 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                               const SizedBox(height: 96), // FAB space
                             ],
                           ),
+                        ),
+
+                        // Tab 3: Estadísticas
+                        SingleChildScrollView(
+                          padding: const EdgeInsets.all(20),
+                          child: Builder(builder: (context) {
+                            final categoryTotals = <String, double>{};
+                            double totalExpensesAmount = 0.0;
+                            for (final e in expenses) {
+                              if (e.type != 'payment') {
+                                final category = e.category;
+                                categoryTotals[category] = (categoryTotals[category] ?? 0.0) + e.amount;
+                                totalExpensesAmount += e.amount;
+                              }
+                            }
+
+                            final memberPaidTotals = <String, double>{};
+                            for (final e in expenses) {
+                              if (e.type != 'payment') {
+                                final payer = e.paidBy.trim().toLowerCase();
+                                memberPaidTotals[payer] = (memberPaidTotals[payer] ?? 0.0) + e.amount;
+                              }
+                            }
+
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  tr('Estadísticas del Grupo', 'Group Statistics'),
+                                  style: textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(height: 16),
+                                
+                                // Card 1: Gastos por Categoría
+                                Card(
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16),
+                                    side: BorderSide(color: colorScheme.outlineVariant.withAlpha(80)),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(16),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          tr('Gastos por Categoría', 'Expenses by Category'),
+                                          style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                                        ),
+                                        const SizedBox(height: 12),
+                                        if (totalExpensesAmount == 0)
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 24),
+                                            child: Center(
+                                              child: Text(
+                                                tr('No hay gastos registrados aún.', 'No expenses registered yet.'),
+                                                style: TextStyle(color: colorScheme.onSurfaceVariant),
+                                              ),
+                                            ),
+                                          )
+                                        else
+                                          ...['Comida', 'Alquiler', 'Servicios', 'Actividades', 'Transporte', 'Otros'].map((cat) {
+                                            final catAmount = categoryTotals[cat] ?? 0.0;
+                                            final pct = totalExpensesAmount > 0 ? (catAmount / totalExpensesAmount) : 0.0;
+                                            if (catAmount == 0) return const SizedBox.shrink();
+                                            return Padding(
+                                              padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Icon(_getRubroIcon(cat), size: 16, color: colorScheme.primary),
+                                                          const SizedBox(width: 8),
+                                                          Text(translateCategory(cat), style: const TextStyle(fontWeight: FontWeight.w600)),
+                                                        ],
+                                                      ),
+                                                      Text(
+                                                        'Q${catAmount.toStringAsFixed(2)} (${(pct * 100).toStringAsFixed(1)}%)',
+                                                        style: TextStyle(fontWeight: FontWeight.bold, color: colorScheme.primary),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const SizedBox(height: 6),
+                                                  ClipRRect(
+                                                    borderRadius: BorderRadius.circular(4),
+                                                    child: LinearProgressIndicator(
+                                                      value: pct,
+                                                      minHeight: 8,
+                                                      backgroundColor: colorScheme.surfaceContainerHighest,
+                                                      valueColor: AlwaysStoppedAnimation<Color>(colorScheme.primary),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          }).toList(),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                
+                                const SizedBox(height: 16),
+                                
+                                // Card 2: Contribución por Integrante
+                                Card(
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16),
+                                    side: BorderSide(color: colorScheme.outlineVariant.withAlpha(80)),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(16),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          tr('Aportes por Integrante', 'Contributions by Member'),
+                                          style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                                        ),
+                                        const SizedBox(height: 12),
+                                        if (totalExpensesAmount == 0)
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 24),
+                                            child: Center(
+                                              child: Text(
+                                                tr('No hay aportes registrados aún.', 'No contributions registered yet.'),
+                                                style: TextStyle(color: colorScheme.onSurfaceVariant),
+                                              ),
+                                            ),
+                                          )
+                                        else
+                                          ...group.members.map((member) {
+                                            final mEmail = member.trim().toLowerCase();
+                                            final mAmount = memberPaidTotals[mEmail] ?? 0.0;
+                                            final pct = totalExpensesAmount > 0 ? (mAmount / totalExpensesAmount) : 0.0;
+                                            return Padding(
+                                              padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      Text(_getMemberName(member), style: const TextStyle(fontWeight: FontWeight.w600)),
+                                                      Text(
+                                                        'Q${mAmount.toStringAsFixed(2)} (${(pct * 100).toStringAsFixed(1)}%)',
+                                                        style: TextStyle(fontWeight: FontWeight.bold, color: colorScheme.secondary),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const SizedBox(height: 6),
+                                                  ClipRRect(
+                                                    borderRadius: BorderRadius.circular(4),
+                                                    child: LinearProgressIndicator(
+                                                      value: pct,
+                                                      minHeight: 8,
+                                                      backgroundColor: colorScheme.surfaceContainerHighest,
+                                                      valueColor: AlwaysStoppedAnimation<Color>(colorScheme.secondary),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          }).toList(),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 96),
+                              ],
+                            );
+                          }),
                         ),
                       ],
                     ),
@@ -3163,6 +3952,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
 // ─── Balance Status ───
 enum _BalanceStatus { owes, owed, balanced }
 
+// ignore: unused_element
 class _BalanceCard extends StatelessWidget {
   final String label;
   final String subtitle;

@@ -1,8 +1,8 @@
-import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/group.dart';
 import '../models/payment_request.dart';
 import '../services/firestore_service.dart';
@@ -53,6 +53,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _checkPendingReminders(String userEmail, List<GroupModel> groups) async {
     if (_hasCheckedReminders) return;
+    
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final pendingCode = prefs.getString('pending_join_code');
+      if (pendingCode != null && pendingCode.isNotEmpty) {
+        // Posponer el recordatorio para no interferir con el diálogo de invitación
+        return;
+      }
+    } catch (_) {}
+
     _hasCheckedReminders = true;
     
     try {
@@ -283,10 +293,28 @@ class _HomeScreenState extends State<HomeScreen> {
                       final doc = docs[i];
                       final data = doc.data() as Map<String, dynamic>;
                       final isRead = data['isRead'] == true;
+                      final timestamp = data['createdAt'] as Timestamp?;
+                      final dateStr = timestamp != null
+                          ? '${timestamp.toDate().day}/${timestamp.toDate().month}/${timestamp.toDate().year} ${timestamp.toDate().hour}:${timestamp.toDate().minute.toString().padLeft(2, '0')}'
+                          : '';
+
                       return ListTile(
                         tileColor: isRead ? null : Colors.blue.shade50,
                         leading: Icon(Icons.notifications, color: isRead ? Colors.grey : Colors.blue),
-                        title: Text(data['title'] ?? ''),
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(child: Text(data['title'] ?? '')),
+                            if (dateStr.isNotEmpty)
+                              Text(
+                                dateStr,
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: Theme.of(context).colorScheme.onSurfaceVariant.withAlpha(180),
+                                ),
+                              ),
+                          ],
+                        ),
                         subtitle: Text(data['body'] ?? ''),
                         onTap: () {
                           if (!isRead) {
@@ -348,24 +376,6 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             }
           ),
-           FutureBuilder<DocumentSnapshot>(
-            future: _firestoreService.getUserProfile(user?.uid ?? ''),
-            builder: (context, profileSnap) {
-              final photoUrl = (profileSnap.data?.data() as Map<String, dynamic>?)?['photoUrl'] as String?;
-              return Padding(
-                padding: const EdgeInsets.only(right: 16.0),
-                child: CircleAvatar(
-                  radius: 16,
-                  backgroundColor: colorScheme.primaryContainer,
-                  backgroundImage: photoUrl != null ? MemoryImage(base64Decode(photoUrl)) : null,
-                  child: photoUrl == null ? Text(
-                    user?.displayName?.substring(0, 1).toUpperCase() ?? email.substring(0, 1).toUpperCase(),
-                    style: TextStyle(color: colorScheme.onPrimaryContainer, fontWeight: FontWeight.bold, fontSize: 12),
-                  ) : null,
-                ),
-              );
-            },
-          )
         ],
       ),
       body: SafeArea(

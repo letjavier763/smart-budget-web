@@ -8,7 +8,9 @@ import 'package:proyecto_app/services/firestore_service.dart';
 import 'package:proyecto_app/home/group_detail_screen.dart';
 import 'package:proyecto_app/theme/translations.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:proyecto_app/widgets/group_avatar.dart';
 
 class GroupsScreen extends StatefulWidget {
@@ -23,12 +25,340 @@ class _GroupsScreenState extends State<GroupsScreen> {
   final _nameController = TextEditingController();
   final _joinCodeController = TextEditingController();
   final TextEditingController otherEmailController = TextEditingController();
+  final _maxMembersController = TextEditingController();
   late final Stream<List<GroupModel>> _groupsStream;
 
   @override
   void initState() {
     super.initState();
     _groupsStream = _firestoreService.groupsForUser(_currentEmail);
+    _checkPendingJoinCode();
+  }
+
+  Future<void> _checkPendingJoinCode() async {
+    final prefs = await SharedPreferences.getInstance();
+    final code = prefs.getString('pending_join_code');
+    if (code != null && code.isNotEmpty) {
+      await prefs.remove('pending_join_code');
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _showAutoJoinDialog(code);
+      });
+    }
+  }
+
+  Future<void> _showAutoJoinDialog(String code) async {
+    final infoFuture = (() async {
+      // 1. Obtener detalles del grupo
+      final group = await _firestoreService.getGroupByCode(code);
+      if (group == null) {
+        throw Exception(tr('No se encontró un grupo con ese código.', 'No group found with that code.'));
+      }
+      
+      // 2. Obtener gastos del grupo
+      final expenses = await _firestoreService.getExpensesForGroup(group.id);
+      final expenseCount = expenses.length;
+      final totalExpenses = expenses.fold<double>(0.0, (sum, e) => sum + e.amount);
+      
+      // 3. Verificar si existe una invitación personal pendiente para el usuario actual
+      final invitationsSnap = await FirebaseFirestore.instance
+          .collection('group_invitations')
+          .where('groupId', isEqualTo: group.id)
+          .where('toEmail', isEqualTo: _currentEmail)
+          .where('status', isEqualTo: 'pending')
+          .limit(1)
+          .get();
+      
+      final bool hasPendingInvitation = invitationsSnap.docs.isNotEmpty;
+      final String? invitationId = hasPendingInvitation ? invitationsSnap.docs.first.id : null;
+      
+      return {
+        'group': group,
+        'expenseCount': expenseCount,
+        'totalExpenses': totalExpenses,
+        'hasPendingInvitation': hasPendingInvitation,
+        'invitationId': invitationId,
+      };
+    })();
+
+    if (!mounted) return;
+
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) {
+        return FutureBuilder<Map<String, dynamic>>(
+          future: infoFuture,
+          builder: (ctx2, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return AlertDialog(
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const CircularProgressIndicator(),
+                    const SizedBox(height: 16),
+                    Text(tr('Cargando detalles del grupo...', 'Loading group details...')),
+                  ],
+                ),
+              );
+            }
+
+            if (snapshot.hasError) {
+              return AlertDialog(
+                title: Text(tr('Error', 'Error')),
+                content: Text(snapshot.error.toString().replaceAll('Exception: ', '')),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(ctx2),
+                    child: Text(tr('Entendido', 'Got it')),
+                  ),
+                ],
+              );
+            }
+
+            final data = snapshot.data!;
+            final GroupModel group = data['group'];
+            final int expenseCount = data['expenseCount'];
+            final double totalExpenses = data['totalExpenses'];
+            final bool hasPendingInvitation = data['hasPendingInvitation'];
+            final String? invitationId = data['invitationId'];
+
+            final colorScheme = Theme.of(context).colorScheme;
+
+            return AlertDialog(
+              title: Column(
+                children: [
+                  CircleAvatar(
+                    radius: 28,
+                    backgroundColor: colorScheme.primaryContainer,
+                    child: Icon(Icons.group, size: 28, color: colorScheme.onPrimaryContainer),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    group.name,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    '${tr('Código', 'Code')}: ${group.code}',
+                    style: TextStyle(fontSize: 12, color: colorScheme.outline, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Divider(),
+                    const SizedBox(height: 8),
+                    // Mensaje de invitación
+                    Text(
+                      hasPendingInvitation
+                          ? tr('¡Has recibido una invitación para unirte a este grupo!', 'You have received an invitation to join this group!')
+                          : tr('¿Deseas enviar una solicitud para unirte a este grupo?', 'Do you want to send a request to join this group?'),
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: hasPendingInvitation ? Colors.purple : colorScheme.primary,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    // Detalles de estado del grupo
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: colorScheme.outlineVariant.withValues(alpha: 0.5)),
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(tr('Miembros:', 'Members:'), style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13)),
+                              Text('${group.members.length}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                            ],
+                          ),
+                          const SizedBox(height: 6),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(tr('Presupuesto:', 'Budget:'), style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13)),
+                              Text(
+                                group.initialBudget != null
+                                    ? 'Q${group.initialBudget!.toStringAsFixed(2)}'
+                                    : tr('No definido', 'Not defined'),
+                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 6),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(tr('Gastos totales:', 'Total expenses:'), style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13)),
+                              Text(
+                                'Q${totalExpenses.toStringAsFixed(2)}',
+                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Colors.red),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 6),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(tr('Total transacciones:', 'Total transactions:'), style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13)),
+                              Text('$expenseCount', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      tr('Lista de miembros:', 'Members list:'),
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                    ),
+                    const SizedBox(height: 6),
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxHeight: 60),
+                      child: SingleChildScrollView(
+                        child: Text(
+                          group.members.join(', '),
+                          style: TextStyle(fontSize: 12, color: colorScheme.onSurfaceVariant),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                if (hasPendingInvitation) ...[
+                  // Botón para Rechazar la Invitación
+                  TextButton(
+                    onPressed: () async {
+                      final confirmed = await showDialog<bool>(
+                        context: ctx2,
+                        builder: (confirmCtx) => AlertDialog(
+                          title: Text(tr('Rechazar invitación', 'Reject invitation')),
+                          content: Text(tr(
+                            '¿Estás seguro de que deseas rechazar la invitación para unirte al grupo?',
+                            'Are you sure you want to reject the invitation to join the group?',
+                          )),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(confirmCtx, false),
+                              child: Text(tr('No, cancelar', 'No, cancel')),
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.red,
+                                foregroundColor: Colors.white,
+                              ),
+                              onPressed: () => Navigator.pop(confirmCtx, true),
+                              child: Text(tr('Sí, rechazar', 'Yes, reject')),
+                            ),
+                          ],
+                        ),
+                      );
+
+                      if (confirmed != true) return;
+
+                      final messenger = ScaffoldMessenger.of(context);
+                      final navigator = Navigator.of(ctx2);
+                      try {
+                        await _firestoreService.respondGroupInvitation(
+                          invitationId: invitationId!,
+                          accept: false,
+                          groupId: group.id,
+                          targetEmail: _currentEmail,
+                        );
+                        navigator.pop();
+                        messenger.showSnackBar(
+                          SnackBar(content: Text(tr('Invitación rechazada.', 'Invitation rejected.'))),
+                        );
+                      } catch (e) {
+                        messenger.showSnackBar(
+                          SnackBar(content: Text('Error: $e')),
+                        );
+                      }
+                    },
+                    style: TextButton.styleFrom(foregroundColor: Colors.red),
+                    child: Text(tr('Rechazar', 'Reject')),
+                  ),
+                  // Botón para Aceptar la Invitación (se une de inmediato)
+                  ElevatedButton(
+                    onPressed: () async {
+                      final messenger = ScaffoldMessenger.of(context);
+                      final navigator = Navigator.of(ctx2);
+                      try {
+                        await _firestoreService.respondGroupInvitation(
+                          invitationId: invitationId!,
+                          accept: true,
+                          groupId: group.id,
+                          targetEmail: _currentEmail,
+                        );
+                        navigator.pop();
+                        messenger.showSnackBar(
+                          SnackBar(
+                            content: Text(tr('¡Te has unido al grupo exitosamente!', 'You have joined the group successfully!')),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                      } catch (e) {
+                        messenger.showSnackBar(
+                          SnackBar(content: Text('Error: $e')),
+                        );
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      foregroundColor: Colors.white,
+                    ),
+                    child: Text(tr('Aceptar', 'Accept')),
+                  ),
+                ] else ...[
+                  // Botón Cancelar (para código público)
+                  TextButton(
+                    onPressed: () => Navigator.pop(ctx2),
+                    child: Text(tr('Cancelar', 'Cancel')),
+                  ),
+                  // Botón para unirse (petición de unión)
+                  ElevatedButton(
+                    onPressed: () async {
+                      final messenger = ScaffoldMessenger.of(context);
+                      final navigator = Navigator.of(ctx2);
+                      try {
+                        await _firestoreService.joinGroupByCode(
+                          groupCode: code,
+                          userEmail: _currentEmail,
+                        );
+                        navigator.pop();
+                        messenger.showSnackBar(
+                          SnackBar(
+                            content: Text(tr('Solicitud enviada al administrador del grupo.', 'Request sent to the group administrator.')),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                      } catch (e) {
+                        navigator.pop();
+                        messenger.showSnackBar(
+                          SnackBar(content: Text(tr('Error al unirse: $e', 'Error joining: $e'))),
+                        );
+                      }
+                    },
+                    child: Text(tr('Solicitar Unirse', 'Request to Join')),
+                  ),
+                ],
+              ],
+            );
+          },
+        );
+      },
+    );
   }
 
   @override
@@ -36,6 +366,7 @@ class _GroupsScreenState extends State<GroupsScreen> {
     _nameController.dispose();
     _joinCodeController.dispose();
     otherEmailController.dispose();
+    _maxMembersController.dispose();
     super.dispose();
   }
 
@@ -47,9 +378,12 @@ class _GroupsScreenState extends State<GroupsScreen> {
   // -------------------------------------------------------------------------
   Future<void> _showCreateGroupDialog() async {
     _nameController.clear();
+    _maxMembersController.clear();
     final List<String> selectedEmails = [];
     String dialogSearchQuery = '';
     final TextEditingController dialogSearchController = TextEditingController();
+    final TextEditingController budgetController = TextEditingController();
+    DateTime? selectedActiveUntil;
     // New state for toggling view of other user's friends
     bool showOtherFriends = false;
     String otherUserEmail = '';
@@ -143,6 +477,50 @@ class _GroupsScreenState extends State<GroupsScreen> {
                             decoration: InputDecoration(
                               labelText: tr('Nombre del grupo', 'Group name'),
                               prefixIcon: const Icon(Icons.group_outlined),
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          TextField(
+                            controller: _maxMembersController,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              labelText: tr('Capacidad máxima de miembros (opcional)', 'Max member capacity (optional)'),
+                              prefixIcon: const Icon(Icons.person_add_alt_1_outlined),
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          TextField(
+                            controller: budgetController,
+                            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                            decoration: InputDecoration(
+                              labelText: tr('Presupuesto inicial (opcional)', 'Initial budget (optional)'),
+                              prefixIcon: const Icon(Icons.monetization_on_outlined),
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: const Icon(Icons.timer_outlined),
+                            title: Text(
+                              selectedActiveUntil == null
+                                  ? tr('Tiempo de actividad (opcional)', 'Activity duration (optional)')
+                                  : '${tr('Activo hasta', 'Active until')}: ${selectedActiveUntil!.day}/${selectedActiveUntil!.month}/${selectedActiveUntil!.year}',
+                            ),
+                            trailing: TextButton(
+                              onPressed: () async {
+                                final date = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now().add(const Duration(days: 7)),
+                                  firstDate: DateTime.now(),
+                                  lastDate: DateTime.now().add(const Duration(days: 3650)),
+                                );
+                                if (date != null) {
+                                  setDialogState(() {
+                                    selectedActiveUntil = date;
+                                  });
+                                }
+                              },
+                              child: Text(tr('Seleccionar', 'Select')),
                             ),
                           ),
                           const SizedBox(height: 20),
@@ -293,6 +671,7 @@ class _GroupsScreenState extends State<GroupsScreen> {
                 TextButton(
                   onPressed: () {
                     dialogSearchController.dispose();
+                    budgetController.dispose();
                     Navigator.pop(ctx);
                   },
                   child: Text(tr('Cancelar', 'Cancel')),
@@ -310,13 +689,38 @@ class _GroupsScreenState extends State<GroupsScreen> {
                       return;
                     }
 
+                    final maxMembersText = _maxMembersController.text.trim();
+                    final maxMembers = maxMembersText.isNotEmpty ? int.tryParse(maxMembersText) : null;
+                    if (maxMembers != null && maxMembers <= 0) {
+                      messenger.showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            tr(
+                              'La capacidad máxima debe ser un número mayor a 0.',
+                              'Max capacity must be a number greater than 0.',
+                            ),
+                          ),
+                        ),
+                      );
+                      return;
+                    }
+
+                    final budgetText = budgetController.text.trim();
+                    final budget = budgetText.isNotEmpty
+                        ? double.tryParse(budgetText.replaceAll(',', '.'))
+                        : null;
+
                     await _firestoreService.createSharedGroup(
                       name: _nameController.text.trim(),
                       members: selectedEmails,
                       createdBy: _currentEmail,
+                      maxMembers: maxMembers,
+                      initialBudget: budget,
+                      activeUntil: selectedActiveUntil,
                     );
 
                     dialogSearchController.dispose();
+                    budgetController.dispose();
                     if (!mounted) return;
                     navigator.pop();
                   },
@@ -621,7 +1025,15 @@ class _GroupsScreenState extends State<GroupsScreen> {
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  tr('${group.members.length} miembros', '${group.members.length} members'),
+                                  group.maxMembers != null
+                                      ? tr(
+                                          '${group.members.length} / ${group.maxMembers} miembros',
+                                          '${group.members.length} / ${group.maxMembers} members',
+                                        )
+                                      : tr(
+                                          '${group.members.length} miembros',
+                                          '${group.members.length} members',
+                                        ),
                                   style: TextStyle(
                                     fontSize: 13,
                                     color:
@@ -840,12 +1252,51 @@ class _PendingInvitationsList extends StatelessWidget {
                       children: [
                         IconButton(
                           icon: const Icon(Icons.close, color: Colors.red),
-                          onPressed: () => service.respondGroupInvitation(
-                            invitationId: inv.id,
-                            accept: false,
-                            groupId: inv.groupId,
-                            targetEmail: email,
-                          ),
+                          onPressed: () async {
+                            final confirmed = await showDialog<bool>(
+                              context: context,
+                              builder: (confirmCtx) => AlertDialog(
+                                title: Text(tr('Rechazar invitación', 'Reject invitation')),
+                                content: Text('${tr('¿Estás seguro de que deseas rechazar la invitación al grupo', 'Are you sure you want to reject the invitation to the group')} "${inv.groupName}"?'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(confirmCtx, false),
+                                    child: Text(tr('No, cancelar', 'No, cancel')),
+                                  ),
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.red,
+                                      foregroundColor: Colors.white,
+                                    ),
+                                    onPressed: () => Navigator.pop(confirmCtx, true),
+                                    child: Text(tr('Sí, rechazar', 'Yes, reject')),
+                                  ),
+                                ],
+                              ),
+                            );
+
+                            if (confirmed == true) {
+                              try {
+                                await service.respondGroupInvitation(
+                                  invitationId: inv.id,
+                                  accept: false,
+                                  groupId: inv.groupId,
+                                  targetEmail: email,
+                                );
+                                if (context.mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text(tr('Invitación rechazada.', 'Invitation rejected.'))),
+                                  );
+                                }
+                              } catch (e) {
+                                if (context.mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('Error: $e')),
+                                  );
+                                }
+                              }
+                            }
+                          },
                         ),
                         IconButton(
                           icon: const Icon(Icons.check, color: Colors.green),
